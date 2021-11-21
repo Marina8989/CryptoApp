@@ -8,25 +8,23 @@ class Sparkline extends React.Component{
         chartLabel: []
     }
 
-    getChartInfo = async(url) => {
-      const {data} = await axios(url)
+    getChartInfo = async() => {
+      const {data} = await axios('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true')
       const spark = data.sparkline_in_7d.map((el) => el[1])
     //   const label = data.prices.map(el => {
     //     return new Date(el[0]).getDate()
     //   })
       this.setState({chartMarket: spark})
-      console.log(this.state.chartMarket)
     }
     componentDidMount(){
-      this.getChartInfo('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true');
+      this.getChartInfo();
     }
     render() {
       return(
         <div className='chart-line'> 
-           
             <Line
                data={{
-                //  labels: this.state.chartLabel,
+                 labels: this.state.chartLabel,
                  datasets: [
                  {
                   label: 'BTC',
@@ -68,9 +66,8 @@ class Sparkline extends React.Component{
             />
         </div>
     )
+ }
 }
-    }
 
    
-
 export default Sparkline
