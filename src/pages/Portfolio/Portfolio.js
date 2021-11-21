@@ -123,7 +123,7 @@ render(){
                 <StyledDataDisplay>
                   <StyledH5>Current amount: <StyledSpan>{this.state.searchNumber <= 1 ? 1 : this.state.searchNumber}</StyledSpan></StyledH5>
                   <StyledH5>Amount Value: <StyledSpan>${(this.state.searchNumber <= 1 ? 1 : this.state.searchNumber) * (this.state.coin.market_data.current_price.usd / 1000000).toFixed(2)}</StyledSpan></StyledH5>
-                  <StyledH5>Amount price change since purchase: <StyledSpan>no data</StyledSpan></StyledH5>
+                  <StyledH5>Amount price change since purchase: <StyledSpan>no data found</StyledSpan></StyledH5>
                   <StyledH5>Purchased date: <StyledSpan>{this.state.searchDate}</StyledSpan></StyledH5>
                 </StyledDataDisplay>
               </div>
