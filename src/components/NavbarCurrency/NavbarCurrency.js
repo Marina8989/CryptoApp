@@ -1,15 +1,47 @@
-import React from 'react';
-import {MdArrowDropDown} from 'react-icons/md';
-import {StyledMenuCurrency, StyledMenuCurrencyH4} from './NavbarCurrency.styles';
+import React from "react";
+import { MdArrowDropDown } from "react-icons/md";
+import {
+  StyledMenuCurrency,
+  StyledMenuCurrencyH4,
+  StyledButton,
+} from "./NavbarCurrency.styles";
 
+class NavbarCurrency extends React.Component {
+  state = {
+    isVisible: false,
+    currencyList: this.props.currencyList,
+  };
 
-class NavbarCurrency extends React.Component{
+  handleClick = () => {
+    this.setState({ isVisible: true });
+  };
+
+  handleCoinCurrency = (el) => {
+    this.setState({ isVisible: false });
+    this.props.handleCoinCurrency(el);
+  };
   render() {
-    return(
+    return (
       <StyledMenuCurrency>
-        <StyledMenuCurrencyH4>USD <MdArrowDropDown className='menu-icon-arrow'/></StyledMenuCurrencyH4>
+        <StyledMenuCurrencyH4 onClick={this.handleClick}>
+          {this.props.currencyDefault}
+          <MdArrowDropDown className="menu-icon-arrow" />
+        </StyledMenuCurrencyH4>
+        {this.state.isVisible && (
+          <>
+            {this.state.currencyList.map((item, index) => (
+              <StyledButton
+                onClick={() => this.handleCoinCurrency(item)}
+                key={index}
+              >
+                {item.toUpperCase()}
+              </StyledButton>
+            ))}
+          </>
+        )}
       </StyledMenuCurrency>
-    )}
+    );
+  }
 }
 
-export default NavbarCurrency
+export default NavbarCurrency;
