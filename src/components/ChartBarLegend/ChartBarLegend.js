@@ -13,7 +13,7 @@ class ChartBarLegend extends React.Component {
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true`
     );
 
-    const newList = [...this.state.legend, data];
+    const newList = [...this.state.legend, data[0]];
     this.setState({ legend: newList });
   };
   componentDidMount() {
@@ -23,10 +23,10 @@ class ChartBarLegend extends React.Component {
     return (
       <>
         {this.state.legend.map((item) => (
-          <StyledLegend key={item[0]}>
+          <StyledLegend key={item}>
             <h5>Volume 24h</h5>
             <StyledLegendH4>
-              ${(item[0].total_volume / 1000000000).toFixed(3)}B
+              ${(item.total_volume / 1000000000).toFixed(3)}B
             </StyledLegendH4>
             <h5>{today}</h5>
           </StyledLegend>

@@ -18,7 +18,6 @@ export const StyledMenuCurrencyH4 = styled.h4`
 `;
 
 export const StyledButton = styled.button`
-  ${'' /* margin: .3rem 0; */}
   padding: -.2rem;
   font-size: 9px;
 `

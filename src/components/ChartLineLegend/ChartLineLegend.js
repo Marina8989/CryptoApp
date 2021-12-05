@@ -10,7 +10,7 @@ class ChartLineLegend extends React.Component {
   };
   getChartLegend = async () => {
     const { data } = await axios(`${process.env.REACT_APP_MARKET_URL}`);
-    const newList = [...this.state.legend, data];
+    const newList = [...this.state.legend, data[0]];
     this.setState({ legend: newList });
   };
   componentDidMount() {
@@ -21,10 +21,10 @@ class ChartLineLegend extends React.Component {
       <>
         {this.state.legend.map((item) => {
           return (
-            <StyledLegend key={0}>
+            <StyledLegend key={item}>
               <h5>Price</h5>
               <StyledLegendH4>
-                ${(item[0].low_24h / 1000).toFixed(3)}K
+                ${(item.low_24h / 1000).toFixed(3)}K
               </StyledLegendH4>
               <h5>{today}</h5>
             </StyledLegend>

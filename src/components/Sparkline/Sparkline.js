@@ -7,18 +7,6 @@ class Sparkline extends React.Component {
     chartMarket: [],
     chartLabel: [],
   };
-
-  getChartInfo = async () => {
-    const { data } = await axios(`${process.env.REACT_APP_MARKET_URL}`);
-    const spark = data.sparkline_in_7d.map((el) => el[1]);
-    //   const label = data.prices.map(el => {
-    //     return new Date(el[0]).getDate()
-    //   })
-    this.setState({ chartMarket: spark });
-  };
-  componentDidMount() {
-    this.getChartInfo();
-  }
   render() {
     return (
       <div className="chart-line">
