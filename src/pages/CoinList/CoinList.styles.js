@@ -47,3 +47,6 @@ export const StyledNavSearch = styled.div`
   display: flex;
   justify-content: space-around;
 `;
+
+export const StyledDivWrap = styled.div``
+export const StyledH3 = styled.h3``

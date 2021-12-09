@@ -121,3 +121,8 @@ export const StyledH5 = styled.h5`
 export const StyledSpan = styled.span`
   color: rgb(39, 121, 39);
 `;
+
+export const StyledDivWrap = styled.div``
+export const StyledH2 = styled.h2``
+export const StyledH5Wrap = styled.h5``
+export const StyledH4Wrap = styled.h4``

@@ -19,3 +19,4 @@ export const StyledGlobalContainer = styled.div`
 export const StyledInputRangeGlobal = styled.input`
   width: 50px;
 `;
+export const StyledH4 = styled.h4``

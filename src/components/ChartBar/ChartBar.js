@@ -14,7 +14,9 @@ class ChartBar extends React.Component {
       `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${coinCurrency}&days=30&interval=daily`
     );
     const chartMarket = data.total_volumes.map((el) => el[1]);
-    const chartLabel = data.total_volumes.map((el) => new Date(el[0]).getDate());
+    const chartLabel = data.total_volumes.map((el) =>
+      new Date(el[0]).getDate()
+    );
     this.setState({ chartMarket, chartLabel });
   };
   componentDidMount() {

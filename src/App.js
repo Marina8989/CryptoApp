@@ -41,7 +41,7 @@ class App extends React.Component {
                 <Portfolio currencyDefault={this.state.currencyDefault} />
               )}
             />
-            <Route exact path="/coinPage/:id" component={CoinPage} />
+            <Route path="/coinPage/:id" component={CoinPage} />
           </Switch>
         </div>
       </div>

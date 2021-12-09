@@ -10,3 +10,7 @@ export const StyledInput = styled.input`
   margin-right: -8rem;
   font-size: 14px;
 `;
+
+export const StyledForm = styled.form``
+export const StyledDiv = styled.div``
+export const StyledH5 = styled.h5``

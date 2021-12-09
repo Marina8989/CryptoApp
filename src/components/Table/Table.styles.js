@@ -24,3 +24,8 @@ export const StyledTable = styled.table`
   border-radius: 10px;
   background: var(--dark-grey);
 `;
+export const StyledTHead = styled.thead``
+export const StyledTr = styled.tr``
+export const StyledTh = styled.th``
+export const StyledTBody = styled.tbody``
+export const StyledInput = styled.input``

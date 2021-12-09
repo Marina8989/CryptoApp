@@ -6,42 +6,47 @@ import {
   TableSymbol,
   TableImage,
   StyledTable,
+  StyledTHead,
+  StyledTr,
+  StyledTh,
+  StyledTBody,
+  StyledInput,
 } from "./Table.styles";
 
 const Table = ({ coinList, currencyDefault }) => {
   return (
     <StyledTable>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>
+      <StyledTHead>
+        <StyledTr>
+          <StyledTh>#</StyledTh>
+          <StyledTh>
             Name <RiArrowDownSFill className="arrow-icon" />
-          </th>
-          <th>
+          </StyledTh>
+          <StyledTh>
             Price <RiArrowDownSFill className="arrow-icon" />
-          </th>
-          <th>1h%</th>
-          <th>24h%</th>
-          <th>7d%</th>
-          <th>
+          </StyledTh>
+          <StyledTh>1h%</StyledTh>
+          <StyledTh>24h%</StyledTh>
+          <StyledTh>7d%</StyledTh>
+          <StyledTh>
             24hVolume <RiArrowDownSFill className="arrow-icon" />
             <br />
             Market Cap
-          </th>
-          <th>
+          </StyledTh>
+          <StyledTh>
             Circulating <RiArrowDownSFill className="arrow-icon" />
             <br />
             Total Supply
-          </th>
-          <th>
+          </StyledTh>
+          <StyledTh>
             Last 7d <RiArrowDownSFill className="arrow-icon" />
-          </th>
-        </tr>
-      </thead>
-      <tbody>
+          </StyledTh>
+        </StyledTr>
+      </StyledTHead>
+      <StyledTBody>
         {coinList.map((coin) =>
           coin.map((item, index) => (
-            <tr scope="row">
+            <StyledTr scope="row">
               <TableRow>{index + 1}</TableRow>
               <TableRow>
                 <TableImage src={item.image} />
@@ -85,7 +90,7 @@ const Table = ({ coinList, currencyDefault }) => {
                   {(item.total_volume / 100000000).toFixed(2)} -{" "}
                   {(item.market_cap / 10000000000).toFixed(2)}
                 </TableRange>
-                <input type="range" />
+                <StyledInput type="range" />
               </TableRow>
               <TableRow>
                 <TableRange>
@@ -93,13 +98,13 @@ const Table = ({ coinList, currencyDefault }) => {
                   {(item.total_supply / 1000000000).toFixed(2)}
                 </TableRange>
                 <br />
-                <input type="range" />
+                <StyledInput type="range" />
               </TableRow>
               <TableRow>testtesttesttesttest</TableRow>
-            </tr>
+            </StyledTr>
           ))
         )}
-      </tbody>
+      </StyledTBody>
     </StyledTable>
   );
 };

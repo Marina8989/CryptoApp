@@ -5,6 +5,7 @@ import {
   StyledMenu,
   StyledMenuPortfolio,
   StyledMenuCoins,
+  StyledDiv,
 } from "./Navbar.styles";
 import Global from "../Global/Global.js";
 
@@ -13,10 +14,10 @@ class Navbar extends React.Component {
     return (
       <>
         <StyledMenu>
-          <div className="menu-links">
+          <StyledDiv className="menu-links">
             <StyledMenuCoins to="/">Coins</StyledMenuCoins>
             <StyledMenuPortfolio to="/portfolio">Portfolio</StyledMenuPortfolio>
-          </div>
+          </StyledDiv>
           <NavbarInput />
           <NavbarCurrency
             handleClick={this.handleClick}

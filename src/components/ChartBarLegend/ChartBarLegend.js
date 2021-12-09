@@ -1,6 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { StyledLegend, StyledLegendH4 } from "./ChartBarLegend.styles";
+import {
+  StyledLegend,
+  StyledLegendH4,
+  StyledH5,
+} from "./ChartBarLegend.styles";
 
 const today = new Date().toString().split(" ").splice(1, 3).join(" ");
 
@@ -24,11 +28,11 @@ class ChartBarLegend extends React.Component {
       <>
         {this.state.legend.map((item) => (
           <StyledLegend key={item}>
-            <h5>Volume 24h</h5>
+            <StyledH5>Volume 24h</StyledH5>
             <StyledLegendH4>
               ${(item.total_volume / 1000000000).toFixed(3)}B
             </StyledLegendH4>
-            <h5>{today}</h5>
+            <StyledH5>{today}</StyledH5>
           </StyledLegend>
         ))}
       </>
@@ -37,4 +41,3 @@ class ChartBarLegend extends React.Component {
 }
 
 export default ChartBarLegend;
-

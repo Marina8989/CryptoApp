@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { ChartBar, ChartLine, Table } from "components";
+import { StyledDivWrap, StyledH3 } from "./CoinList.styles";
 
 class CoinList extends React.Component {
   state = {
@@ -29,30 +30,30 @@ class CoinList extends React.Component {
   }
   render() {
     return (
-      <div className="table">
-        <h4 className="table-text">Overview</h4>
-        <div className="charts">
-          <div className="chart-display">
+      <StyledDivWrap className="table">
+        <StyledH3 className="table-text">Overview</StyledH3>
+        <StyledDivWrap className="charts">
+          <StyledDivWrap className="chart-display">
             <ChartLine
               chartMarket={this.chartMarket}
               chartLabel={this.chartLabel}
               currencyDefault={this.props.currencyDefault}
             />
-          </div>
-          <div className="chart-display">
+          </StyledDivWrap>
+          <StyledDivWrap className="chart-display">
             <ChartBar
               chartMarket={this.chartMarket}
               chartLabel={this.chartLabel}
               currencyDefault={this.props.currencyDefault}
             />
-          </div>
-        </div>
-        <h4 className="table-text">Overview</h4>
+          </StyledDivWrap>
+        </StyledDivWrap>
+        <StyledH3 className="table-text">Overview</StyledH3>
         <Table
           coinList={this.state.coinList}
           currencyDefault={this.props.currencyDefault}
         />
-      </div>
+      </StyledDivWrap>
     );
   }
 }

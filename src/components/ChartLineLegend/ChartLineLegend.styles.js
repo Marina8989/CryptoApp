@@ -9,3 +9,5 @@ export const StyledLegend = styled.div`
 export const StyledLegendH4 = styled.h4`
   font-size: 21px;
 `;
+
+export const StyledH5 = styled.h5``

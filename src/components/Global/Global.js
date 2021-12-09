@@ -6,6 +6,7 @@ import {
   StyledGlobal,
   StyledGlobalContainer,
   StyledInputRangeGlobal,
+  StyledH4,
 } from "./Global.styles";
 import axios from "axios";
 
@@ -28,9 +29,9 @@ class Global extends React.Component {
         {this.state.globalList.map((item, index) => {
           return (
             <StyledGlobal key={index}>
-              <h6>Coins: {item.data.active_cryptocurrencies}</h6>
-              <h6>Exchange: {item.data.markets}</h6>
-              <h6>
+              <StyledH4>Coins: {item.data.active_cryptocurrencies}</StyledH4>
+              <StyledH4>Exchange: {item.data.markets}</StyledH4>
+              <StyledH4>
                 <BsDot className="dot" />
                 {(
                   item.data.total_volume[
@@ -38,8 +39,8 @@ class Global extends React.Component {
                   ] / 10000000000
                 ).toFixed(2)}
                 T <RiArrowUpSFill className="arrow-up" />
-              </h6>
-              <h6>
+              </StyledH4>
+              <StyledH4>
                 <BsDot className="dot" />
                 {(
                   item.data.total_volume[
@@ -47,17 +48,17 @@ class Global extends React.Component {
                   ] / 100000000000
                 ).toFixed(2)}
                 B <RiArrowUpSFill className="arrow-up" />
-              </h6>
-              <h6>
+              </StyledH4>
+              <StyledH4>
                 <FaBitcoin className="bicoin-icon" />{" "}
                 {item.data.market_cap_percentage.btc.toFixed(2)}%{" "}
                 <StyledInputRangeGlobal type="range" />
-              </h6>
-              <h6>
+              </StyledH4>
+              <StyledH4>
                 <FaEthereum className="ethereum-icon" />{" "}
                 {item.data.market_cap_percentage.eth.toFixed(2)}%{" "}
                 <StyledInputRangeGlobal type="range" />
-              </h6>
+              </StyledH4>
             </StyledGlobal>
           );
         })}

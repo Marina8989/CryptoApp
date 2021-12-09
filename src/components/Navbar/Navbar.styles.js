@@ -13,6 +13,7 @@ export const StyledMenuPortfolio = styled(Link)`
   text-decoration: none;
   padding: 0.5rem 1.5rem;
   color: white;
+  font-size: 19px;
 `;
 
 export const StyledMenuCoins = styled(Link)`
@@ -21,4 +22,6 @@ export const StyledMenuCoins = styled(Link)`
   border-radius: 5px;
   text-decoration: none;
   padding: 0.5rem 1.5rem;
+  font-size: 19px;
 `;
+export const StyledDiv = styled.div``

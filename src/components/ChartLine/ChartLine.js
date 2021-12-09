@@ -32,7 +32,7 @@ class ChartLine extends React.Component {
                 label: this.props.currencyDefault,
                 data: this.state.chartMarket,
                 fill: true,
-                backgroundColor: "rgb(23, 82, 34)",
+                backgroundColor: "rgba(23, 82, 34, .2)",
                 borderColor: "rgb(1,226,37)",
                 tension: 0.6,
               },
@@ -72,4 +72,3 @@ class ChartLine extends React.Component {
 }
 
 export default ChartLine;
-

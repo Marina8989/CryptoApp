@@ -21,6 +21,10 @@ import {
   StyledDisplayMarketPrice,
   StyledH5,
   StyledSpan,
+  StyledDivWrap,
+  StyledH2,
+  StyledH5Wrap,
+  StyledH4Wrap,
 } from "./Portfolio.styles";
 import "../../index.css";
 
@@ -86,21 +90,21 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <StyledDivWrap>
         <AddAsset handleVisibility={this.handleVisibility} />
         {this.state.isVisible && (
           <StyledDiv>
-            <h2>Select Coins</h2>
+            <StyledH2>Select Coins</StyledH2>
             <StyledModalSection>
               <StyledModalCoin>
                 <StyledModalImg
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/BTC_Logo.svg/1200px-BTC_Logo.svg.png"
                   alt="logo"
                 />
-                <h5>Bitcoin (BTC)</h5>
+                <StyledH5Wrap>Bitcoin (BTC)</StyledH5Wrap>
               </StyledModalCoin>
 
-              <div>
+              <StyledDivWrap>
                 <StyledModalInputText
                   value={this.state.searchValue}
                   onChange={this.handleChange}
@@ -123,7 +127,7 @@ class App extends React.Component {
                   placeholder="Purchased Date"
                 />
                 <br />
-              </div>
+              </StyledDivWrap>
             </StyledModalSection>
             <>
               <StyledModalBtn>
@@ -141,7 +145,7 @@ class App extends React.Component {
         <>
           <StyledDropdownModal>
             {this.state.coinNames.map((coin) => (
-              <div>
+              <StyledDivWrap>
                 <StyledDropdownModalButton
                   onClick={() => this.handleClick(coin.id)}
                   key={coin.id}
@@ -150,7 +154,7 @@ class App extends React.Component {
                 </StyledDropdownModalButton>
                 <br />
                 <br />
-              </div>
+              </StyledDivWrap>
             ))}
           </StyledDropdownModal>
           <>
@@ -160,15 +164,15 @@ class App extends React.Component {
                 <StyledDisplayInfoContainer>
                   <StyledCoinInfoDisplay>
                     <StyledModalImg src={this.state.coin.image.small} />
-                    <h5>
+                    <StyledH5Wrap>
                       {this.state.coin.name} (
                       {this.state.coin.symbol.toUpperCase()})
-                    </h5>
+                    </StyledH5Wrap>
                   </StyledCoinInfoDisplay>
 
                   <StyledDisplayMarketPrice>
-                    <div>
-                      <h4>Market price</h4>
+                    <StyledDivWrap>
+                      <StyledH4Wrap>Market price</StyledH4Wrap>
                       <StyledDataDisplay>
                         <StyledH5>
                           Current price:{" "}
@@ -219,10 +223,10 @@ class App extends React.Component {
                           </StyledSpan>
                         </StyledH5>
                       </StyledDataDisplay>
-                    </div>
+                    </StyledDivWrap>
 
-                    <div>
-                      <h4>Your coin</h4>
+                    <StyledDivWrap>
+                      <StyledH4Wrap>Your coin</StyledH4Wrap>
                       <StyledDataDisplay>
                         <StyledH5>
                           Current amount:{" "}
@@ -255,14 +259,14 @@ class App extends React.Component {
                           <StyledSpan>{this.state.searchDate}</StyledSpan>
                         </StyledH5>
                       </StyledDataDisplay>
-                    </div>
+                    </StyledDivWrap>
                   </StyledDisplayMarketPrice>
                 </StyledDisplayInfoContainer>
               </StyledContainer>
             )}
           </>
         </>
-      </div>
+      </StyledDivWrap>
     );
   }
 }
