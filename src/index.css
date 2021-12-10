@@ -1,0 +1,120 @@
+:root{
+    --dark-grey:rgb(25,27,31);
+    --light-grey:rgb(31,33,40);
+    --off-white: rgb(231, 234, 236);
+    --bg-white: rgb(238, 241, 241);
+    --text-dark: rgb(214, 214, 214);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: var(--light-grey);
+    color: var(--off-white);
+    position: relative;
+}
+
+/* Navbar start */
+.menu-icon-arrow{
+   color: green;
+   font-size: 30px;
+   margin-top: -.4rem;
+}
+.menu-icon{
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 1.7rem;
+    left: 95%;
+    font-size: 21px;
+}
+/* Navbar end */
+
+/* Table start */
+
+.table-text{
+    margin: .3rem 0 1rem 4.3rem;
+}
+.green{
+    color: rgb(59, 173, 13);
+}
+.red{
+    color: rgb(226, 8, 8);
+}
+/* Table end */
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: rgb(60, 204, 161);
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: rgb(32, 178, 134);
+    margin-top: -4px;
+}
+
+/* Chart start */
+.line-chart{
+    width: 430px;
+    height: 200px;
+    margin: 0 -1.3rem;
+}
+  
+.chart-display{
+    background: var(--dark-grey);
+    padding: .2rem 2.5rem;
+    padding-bottom: 1rem;
+    border-radius: 10px;
+}
+.charts{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2rem -3.5rem 6rem -3.5rem;
+}
+/* Chart end */
+.arrow{
+    display: flex;
+}
+.arrow-icon{
+    color: rgb(133, 48, 133);
+}
+.spark{
+    width: 100px;
+}
+
+.arrow-up{
+    color: green;
+    font-size: 19px;
+    margin: -.4rem auto;
+}
+.dot{
+    color: purple;
+    font-size: 20px;
+    margin: -.4rem auto;
+}
+.bicoin-icon{
+    color: orange;
+}
+.ethereum-icon{
+    color: rgb(93, 53, 235);
+}
+
+/*  */
+ .one-modal-input{
+    position: relative;
+ }
+
+ .one{
+     position: relative;
+ }
+/*  */

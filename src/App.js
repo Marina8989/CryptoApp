@@ -1,44 +1,52 @@
 import React from "react";
-import CoinList from './pages/CoinList/CoinList';
-import CoinPage from './pages/CoinPage/CoinPage';
-import Portfolio from './pages/Portfolio/Portfolio';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import { FaAdjust } from "react-icons/fa";
+import { CoinList, CoinPage, Portfolio } from "pages";
+import { Navbar } from "components";
+import "./index.css";
 
-export default function App() {
-  return (
-    <Router>
+class App extends React.Component {
+  state = {
+    currencyDefault: "USD",
+    currencyList: ["USD", "EUR", "GBP", "ETH", "BTC"],
+  };
+  handleCoinCurrency = (el) => {
+    const newVal = this.state.currencyList.find((item) => item === el);
+    this.setState({ currencyDefault: newVal });
+  };
+  render() {
+    return (
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">CoinList</Link>
-            </li>
-            <li>
-              <Link to="/coinPage">CoinPage</Link>
-            </li>
-            <li>
-              <Link to="/portfolio">Portfolio</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/coinPage">
-            <CoinPage />
-          </Route>
-          <Route path="/portfolio">
-            <Portfolio />
-          </Route>
-          <Route path="/">
-            <CoinList />
-          </Route>
-        </Switch>
+        <div className="navbar">
+          <FaAdjust onClick={this.handleSwitch} className="menu-icon" />
+          <Navbar
+            handleCoinCurrency={this.handleCoinCurrency}
+            currencyDefault={this.state.currencyDefault}
+            currencyList={this.state.currencyList}
+          />
+        </div>
+        <div className="bg-main">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={() => (
+                <CoinList currencyDefault={this.state.currencyDefault} />
+              )}
+            />
+            <Route
+              exact
+              path="/portfolio"
+              component={() => (
+                <Portfolio currencyDefault={this.state.currencyDefault} />
+              )}
+            />
+            <Route path="/coinPage/:id" component={CoinPage} />
+          </Switch>
+        </div>
       </div>
-    </Router>
-  );
+    );
+  }
 }
 
+export default App;
