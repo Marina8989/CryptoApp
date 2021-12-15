@@ -1,26 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { FaAdjust } from "react-icons/fa";
 import { StyledDiv } from "./NavbarHeader.styles";
 
-class NavbarHeader extends React.Component {
-  state = {
-    on: false,
-  };
+function NavbarHeader() {
+  const [isOn, setIsOn] = useState(false);
 
-  handleSwitch = () => {
-    this.setState({ on: !this.state.on });
+  const handleSwitch = () => {
+    setIsOn(!isOn);
   };
-  render() {
-    return (
-      <StyledDiv>
-        <StyledDiv className="navbar">
-          <Navbar />
-          <FaAdjust onClick={this.handleSwitch} className="menu-icon" />
-        </StyledDiv>
+  return (
+    <StyledDiv>
+      <StyledDiv className="navbar">
+        <Navbar />
+        <FaAdjust onClick={handleSwitch} className="menu-icon" />
       </StyledDiv>
-    );
-  }
+    </StyledDiv>
+  );
 }
 
 export default NavbarHeader;
