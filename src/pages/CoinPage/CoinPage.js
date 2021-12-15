@@ -34,7 +34,6 @@ function CoinPage(props) {
   const [isVisible, setIsVisible] = useState(false);
 
   const getCoinData = async (val) => {
-    console.log("val", val);
     try {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${val}?localization=false`
