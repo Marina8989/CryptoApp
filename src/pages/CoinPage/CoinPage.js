@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import {
@@ -32,8 +32,6 @@ const today = new Date().toString();
 function CoinPage(props) {
   const [coin, setCoin] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-  const prevCoinRef = useRef();
-  const prevCoin = prevCoinRef.current;
 
   const getCoinData = async (val) => {
     console.log("val", val);
@@ -48,16 +46,11 @@ function CoinPage(props) {
       setIsVisible(false);
     }
   };
+  
   useEffect(() => {
-    prevCoinRef.current = props.location.pathname;
-    getCoinData(props.match.params.id);
-  }, [coin]);
+    getCoinData(props.match.params.id)
+  }, [props.match.params.id]);
 
-  useEffect(() => {
-    if (props.location.pathname !== prevCoin) {
-      getCoinData(props.match.params.id);
-    }
-  }, [coin]);
   return (
     <StyledOuterDiv>
       <StyledH3>Your summary</StyledH3>
