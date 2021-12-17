@@ -9,8 +9,7 @@ import {
 } from "./Navbar.styles";
 import Global from "../Global/Global.js";
 
-class Navbar extends React.Component {
-  render() {
+function Navbar(props){
     return (
       <>
         <StyledMenu>
@@ -20,16 +19,16 @@ class Navbar extends React.Component {
           </StyledDiv>
           <NavbarInput />
           <NavbarCurrency
-            handleClick={this.handleClick}
-            handleCoinCurrency={this.props.handleCoinCurrency}
-            currencyDefault={this.props.currencyDefault}
-            currencyList={this.props.currencyList}
+            handleClick={props.handleClick}
+            handleCoinCurrency={props.handleCoinCurrency}
+            currencyDefault={props.currencyDefault}
+            currencyList={props.currencyList}
           />
         </StyledMenu>
-        <Global currencyDefault={this.props.currencyDefault} />
+        <Global currencyDefault={props.currencyDefault} />
       </>
     );
   }
-}
+
 
 export default Navbar;

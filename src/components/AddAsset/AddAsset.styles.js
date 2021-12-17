@@ -8,4 +8,6 @@ export const StyledButton = styled.button`
   border: none;
   width: 240px;
   margin: 1rem 40%;
+  font-size: 16px;
+  font-weight: bold;
 `;
