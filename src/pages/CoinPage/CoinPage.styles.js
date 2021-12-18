@@ -106,7 +106,7 @@ export const StyledInput = styled.input`
   margin-top: 2.2rem;
 `
 export const StyledDescription = styled.p`
-   font-size: 14px;
+   font-size: 16px;
    border-radius: 7px;
    margin: 0 auto;
    padding: 2.4rem;

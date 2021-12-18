@@ -32,6 +32,8 @@ export const StyledModalInputText = styled.input`
   border: none;
   background: var(--light-grey);
   color: white;
+  font-weight: bold;
+  font-size: 15px;
 `;
 
 export const StyledModalImg = styled.img`
@@ -52,6 +54,8 @@ export const StyledModalBtnClose = styled.button`
   border-radius: 5px;
   border: none;
   margin: 0 1rem;
+  font-weight: bold;
+  font-size: 14px;
 `;
 
 export const StyledModalBtnSave = styled.button`
@@ -61,6 +65,8 @@ export const StyledModalBtnSave = styled.button`
   border-radius: 5px;
   border: none;
   margin: 0 1rem;
+  font-weight: bold;
+  font-size: 13px;
 `;
 
 export const StyledDropdownModal = styled.div`
