@@ -48,7 +48,7 @@ body{
 input[type=range]::-webkit-slider-runnable-track {
     width: 300px;
     height: 5px;
-    background: rgb(60, 204, 161);
+    background: rgba(148, 80, 226, 0.4);
     border: none;
     border-radius: 3px;
 }
@@ -56,11 +56,11 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
-    height: 14px;
-    width: 14px;
+    height: 12px;
+    width: 12px;
     border-radius: 50%;
-    background: rgb(32, 178, 134);
-    margin-top: -4px;
+    background: rgb(50, 90, 221);
+    margin-top: -5px;
 }
 
 /* Chart start */
@@ -118,3 +118,4 @@ input[type=range]::-webkit-slider-thumb {
      position: relative;
  }
 /*  */
+

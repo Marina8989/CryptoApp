@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const StyledLegend = styled.div`
-  padding-top: 0.7rem;
-  margin-bottom: -2.4rem;
-  line-height: 1.6;
+  padding-top: 0.8rem;
+  margin-bottom: -1.9rem;
+  line-height: 1.4;
   font-weight: lighter;
 `;
 export const StyledLegendH4 = styled.h4`
