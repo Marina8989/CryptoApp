@@ -5,16 +5,16 @@ import ChartLineLegend from "../ChartLineLegend/ChartLineLegend.js";
 
 function ChartLine(props) {
   const [chartMarket, setChartMarket] = useState([]);
-  const [chartLabel, setChartLabel] = useState([]);
+  const [chartLabels, setChartLabels] = useState([]);
 
   const getChartInfo = async (coinCurrency) => {
     const { data } = await axios(
       `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${coinCurrency}&days=30&interval=daily`
     );
     const chartMarket = data.prices.map((el) => el[1]);
-    const chartLabel = data.prices.map((el) => new Date(el[0]).getDate());
+    const chartLabels = data.prices.map((el) => new Date(el[0]).getDate());
     setChartMarket(chartMarket);
-    setChartLabel(chartLabel);
+    setChartLabels(chartLabels);
   };
   useEffect(() => {
     getChartInfo(props.currencyDefault.toLowerCase());
@@ -24,7 +24,7 @@ function ChartLine(props) {
       <ChartLineLegend />
       <Line
         data={{
-          labels: chartLabel,
+          labels: chartLabels,
           datasets: [
             {
               label: props.currencyDefault,

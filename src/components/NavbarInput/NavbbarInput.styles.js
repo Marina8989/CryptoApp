@@ -7,7 +7,7 @@ export const StyledInput = styled.input`
   border: none;
   padding: 0.6rem 1.6rem;
   margin-top: -0.4rem;
-  margin-right: -8rem;
+  margin-right: -6rem;
   font-size: 17px;
 `;
 

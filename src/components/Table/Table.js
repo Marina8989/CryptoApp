@@ -1,5 +1,6 @@
 import React from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
+import Sparkline from "../Sparkline/Sparkline.js";
 import {
   TableRow,
   TableRange,
@@ -11,6 +12,10 @@ import {
   StyledTh,
   StyledTBody,
   StyledInput,
+  StyledSpan,
+  StyledCurrency,
+  StyledCurentPrice,
+  StyledPercent,
 } from "./Table.styles";
 
 const Table = ({ coinList, currencyDefault }) => {
@@ -51,12 +56,15 @@ const Table = ({ coinList, currencyDefault }) => {
               <TableRow>
                 <TableImage src={item.image} />
                 <TableSymbol>
-                  {item.name}({item.symbol})
+                  {item.name}
+                  <StyledSpan>({item.symbol})</StyledSpan>
                 </TableSymbol>
               </TableRow>
               <TableRow>
-                {currencyDefault}
-                {item.current_price.toFixed(2)}
+                <StyledCurrency>{currencyDefault}</StyledCurrency>
+                <StyledCurentPrice>
+                  {(item.current_price / 1000).toFixed(3)}
+                </StyledCurentPrice>
               </TableRow>
               <TableRow
                 className={
@@ -65,7 +73,9 @@ const Table = ({ coinList, currencyDefault }) => {
                     : "red"
                 }
               >
-                {item.price_change_percentage_1h_in_currency.toFixed(2)}%
+                <StyledPercent>
+                  {item.price_change_percentage_1h_in_currency.toFixed(2)}%
+                </StyledPercent>
               </TableRow>
               <TableRow
                 className={
@@ -74,7 +84,9 @@ const Table = ({ coinList, currencyDefault }) => {
                     : "red"
                 }
               >
-                {item.price_change_percentage_24h_in_currency.toFixed(2)}%
+                <StyledPercent>
+                  {item.price_change_percentage_24h_in_currency.toFixed(2)}%
+                </StyledPercent>
               </TableRow>
               <TableRow
                 className={
@@ -83,14 +95,22 @@ const Table = ({ coinList, currencyDefault }) => {
                     : "red"
                 }
               >
-                {item.price_change_percentage_7d_in_currency.toFixed(2)}%
+                <StyledPercent>
+                  {item.price_change_percentage_7d_in_currency.toFixed(2)}%
+                </StyledPercent>
               </TableRow>
               <TableRow>
                 <TableRange>
                   {(item.total_volume / 100000000).toFixed(2)} -{" "}
                   {(item.market_cap / 10000000000).toFixed(2)}
                 </TableRange>
-                <StyledInput type="range" />
+                <StyledInput
+                  type="range"
+                  value={
+                    (item.total_volume / 100000000).toFixed(2) -
+                    (item.market_cap / 10000000000).toFixed(2)
+                  }
+                />
               </TableRow>
               <TableRow>
                 <TableRange>
@@ -98,9 +118,17 @@ const Table = ({ coinList, currencyDefault }) => {
                   {(item.total_supply / 1000000000).toFixed(2)}
                 </TableRange>
                 <br />
-                <StyledInput type="range" />
+                <StyledInput
+                  type="range"
+                  value={
+                    (item.circulating_supply / 100000000).toFixed(2) -
+                    (item.total_supply / 1000000000).toFixed(2)
+                  }
+                />
               </TableRow>
-              <TableRow>testtesttesttesttest</TableRow>
+              <TableRow>
+                <Sparkline item={item.id} currencyDefault={currencyDefault} />
+              </TableRow>
             </StyledTr>
           ))
         )}
