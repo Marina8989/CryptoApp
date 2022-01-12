@@ -24,7 +24,7 @@ export const TableImage = styled.img`
 export const StyledTable = styled.table`
   text-align: center;
   margin: auto;
-  width: 89%;
+  width: 80%;
   padding: 3rem 0.9rem;
   margin-top: 0.2rem;
   border-radius: 10px;

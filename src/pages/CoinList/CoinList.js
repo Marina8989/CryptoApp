@@ -21,7 +21,6 @@ function CoinList(props) {
   useEffect(() => {
     getCoinInfo();
   }, []);
-
   return (
     <StyledDivWrap className="table">
       <StyledH3 className="table-text">Overview</StyledH3>

@@ -49,4 +49,6 @@ export const StyledNavSearch = styled.div`
 `;
 
 export const StyledDivWrap = styled.div``
-export const StyledH3 = styled.h3``
+export const StyledH3 = styled.h3`
+   margin-bottom: 3rem ;
+`

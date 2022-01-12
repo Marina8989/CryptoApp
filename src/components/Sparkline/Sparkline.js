@@ -10,9 +10,8 @@ function Sparkline(props) {
     const { data } = await axios(
       `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${coinCurrency}&days=15&interval=daily`
     );
-    console.log("data", data);
-    let chartMarket = data.prices.map((el) => el[1]);
-    let chartLabels = data.prices.map((el) => new Date(el[0]).getDate());
+    const chartMarket = data.prices.map((el) => el[1]);
+    const chartLabels = data.prices.map((el) => new Date(el[0]).getDate());
     setChartMarket(chartMarket);
     setChartLabels(chartLabels);
   };
