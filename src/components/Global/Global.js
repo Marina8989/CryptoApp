@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { RiArrowUpSFill } from "react-icons/ri";
 import { BsDot } from "react-icons/bs";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
@@ -8,24 +9,15 @@ import {
   StyledInputRangeGlobal,
   StyledH4,
 } from "./Global.styles";
-import axios from "axios";
+import { getGlobalInfo } from "../../store/global/globalAction.js";
 
 function Global(props) {
-  const [globalList, setGlobalList] = useState([]);
-
-  const getGlobalInfo = async () => {
-    const { data } = await axios(`${process.env.REACT_APP_GLOBAL}`);
-    const newList = [...globalList, data];
-    setGlobalList(newList);
-  };
-
   useEffect(() => {
-    getGlobalInfo();
+    props.getGlobalInfo();
   }, []);
-
   return (
     <StyledGlobalContainer>
-      {globalList.map((item, index) => {
+      {props.global.map((item, index) => {
         return (
           <StyledGlobal key={index}>
             <StyledH4>Coins: {item.data.active_cryptocurrencies}</StyledH4>
@@ -63,5 +55,11 @@ function Global(props) {
   );
 }
 
-export default Global;
+const mapStateToProps = (state) => ({
+  global: state.global.globalList,
+});
+const mapDispatchToProps = {
+  getGlobalInfo,
+};
 
+export default connect(mapStateToProps, mapDispatchToProps)(Global);
