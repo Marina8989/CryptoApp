@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FaAdjust } from "react-icons/fa";
 import { CoinList, CoinPage, Portfolio } from "pages";
 import { Navbar } from "components";
-import { findItem } from "./store/mainApp/mainAppAction.js";
+import { findItem } from "store/mainApp/mainAppAction.js";
 import "./index.css";
 
 function App(props) {

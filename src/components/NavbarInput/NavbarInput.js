@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
-import { debounce } from "lodash";
+import { connect } from "react-redux";
+import { throttle } from "lodash";
 import { Link } from "react-router-dom";
 import {
   StyledInput,
@@ -8,45 +8,29 @@ import {
   StyledDiv,
   StyledH5,
 } from "./NavbbarInput.styles";
+import { getCoinName, resetList, resetVisibility } from "../../store/navSearch/navSearchAction";
 
-function NavbarInput() {
+function NavbarInput(props) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [list, setList] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
   const prevSearchTermRef = useRef();
-  const prevSerachTerm = prevSearchTermRef.current;
+  //const prevSearchTerm = prevSearchTermRef.current;
 
-  const getCoinName = async (coinName) => {
-    try {
-      const { data } = await axios(
-        `https://crypto-app-server.herokuapp.com/coins/${coinName}`
-      );
-      setList(data);
-      setIsVisible(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const throttleRef = useRef(throttle(props.getCoinName, 1000));
+  
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
-    debounce(getCoinName, 2000)(e.target.value);
+    throttleRef.current(searchTerm);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   const handleLinkChange = () => {
     setSearchTerm("");
-    setIsVisible(false);
+    props.resetVisibility();
   };
   useEffect(() => {
     prevSearchTermRef.current = searchTerm;
   }, [searchTerm]);
-
-  useEffect(() => {
-    if (searchTerm !== prevSerachTerm) {
-      setList([]);
-    }
-  }, []);
 
   return (
     <StyledDiv>
@@ -60,12 +44,12 @@ function NavbarInput() {
       </StyledForm>
 
       <StyledDiv>
-        {isVisible && (
+        {props.isListVisible && (
           <>
-            {list.map((item) => (
+            {props.list.map((item) => (
               <Link
                 to={`/coinPage/${item.id}`}
-                list={list}
+                list={props.list}
                 onClick={handleLinkChange}
               >
                 <StyledH5 key={item.id}>{item.name}</StyledH5>
@@ -78,4 +62,14 @@ function NavbarInput() {
   );
 }
 
-export default NavbarInput;
+const mapStateToProps = (state) => ({
+  list: state.navSearch.list,
+  isListVisible: state.navSearch.isListVisible
+})
+const mapDispatchToProps = {
+  getCoinName,
+  resetList,
+  resetVisibility
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarInput);

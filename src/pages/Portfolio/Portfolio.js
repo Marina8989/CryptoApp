@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { connect } from "react-redux";
 import { debounce } from "lodash";
-import axios from "axios";
 import { AddAsset } from "components";
 import {
   StyledDiv,
@@ -27,29 +27,17 @@ import {
   StyledH4Wrap,
 } from "./Portfolio.styles";
 import "../../index.css";
+import {getCoinNames, getCoinInfo, handleCoinNames} from "../../store/portfolio/portfolioAction.js";
 
 function Portfolio(props) {
   const [searchValue, setSearchValue] = useState("");
   const [searchNumber, setSearchNumber] = useState("");
   const [searchDate, setSearchDate] = useState("");
-  const [coinNames, setCoinNames] = useState([]);
-  const [coin, setCoin] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-
-  const getCoinNames = async (val) => {
-    try {
-      const { data } = await axios(
-        `https://crypto-app-server.herokuapp.com/coins/${val}`
-      );
-      setCoinNames(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
-    debounce(getCoinNames, 2000)(e.target.value);
+    debounce(props.getCoinNames, 2000)(e.target.value);
   };
   const handleChangeNumber = (e) => {
     setSearchNumber(e.target.value);
@@ -57,37 +45,25 @@ function Portfolio(props) {
   const handleChangeDate = (e) => {
     setSearchDate(e.target.value);
   };
-
-  const getCoinInfo = async (val) => {
-    try {
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${val}`
-      );
-      setCoin(data);
-      setCoinNames([]);
-      setSearchValue(val);
-    } catch (err) {
-      console.log(err);
-    }
+ 
+  const handleClick = (searchValue) => {
+    props.handleCoinNames();
+    setSearchValue(searchValue);
   };
-
-  const handleClick = (item) => {
-    setCoinNames([]);
-    setSearchValue(item);
-  };
-
   const handleAssetInfo = () => {
-    getCoinInfo(searchValue);
+    props.getCoinInfo(searchValue);
     setIsVisible(false);
   };
-
   const handleVisibility = () => {
     setIsVisible(!isVisible);
+    setSearchValue("");
+    setSearchNumber("");
+    setSearchDate("");
   };
-
   const handleClose = () => {
     setIsVisible(false);
   };
+
   return (
     <StyledDivWrap>
       <AddAsset handleVisibility={handleVisibility} />
@@ -143,7 +119,7 @@ function Portfolio(props) {
 
       <>
         <StyledDropdownModal>
-          {coinNames.map((coin) => (
+          {props.coinNames.map((coin) => (
             <StyledDivWrap>
               <StyledDropdownModalButton
                 onClick={() => handleClick(coin.id)}
@@ -157,14 +133,14 @@ function Portfolio(props) {
           ))}
         </StyledDropdownModal>
         <>
-          {coin && (
+          {props.coin && (
             <StyledContainer>
               <StyledTextDisplay>Your statistics</StyledTextDisplay>
               <StyledDisplayInfoContainer>
                 <StyledCoinInfoDisplay>
-                  <StyledModalImg src={coin.image.small} />
+                  <StyledModalImg src={props.coin.image.small} />
                   <StyledH5Wrap>
-                    {coin.name} ({coin.symbol.toUpperCase()})
+                    {props.coin.name} ({props.coin.symbol.toUpperCase()})
                   </StyledH5Wrap>
                 </StyledCoinInfoDisplay>
 
@@ -177,7 +153,7 @@ function Portfolio(props) {
                         <StyledSpan>
                           $
                           {(
-                            coin.market_data.current_price[
+                            props.coin.market_data.current_price[
                               props.currencyDefault.toLowerCase()
                             ] / 1000
                           ).toFixed(2)}
@@ -187,7 +163,7 @@ function Portfolio(props) {
                         Price change 24h:{" "}
                         <StyledSpan>
                           {(
-                            coin.market_data.price_change_24h / 1000000
+                            props.coin.market_data.price_change_24h / 1000000
                           ).toFixed(2)}
                           %
                         </StyledSpan>
@@ -196,11 +172,11 @@ function Portfolio(props) {
                         Market cap vs Volume:{" "}
                         <StyledSpan>
                           {(
-                            coin.market_data.market_cap[
+                            props.coin.market_data.market_cap[
                               props.currencyDefault.toLowerCase()
                             ] /
                               100000000000 -
-                            coin.market_data.current_price[
+                            props.coin.market_data.current_price[
                               props.currencyDefault.toLowerCase()
                             ] /
                               100000000000
@@ -213,8 +189,8 @@ function Portfolio(props) {
                         <StyledSpan>
                           $
                           {(
-                            coin.market_data.max_supply / 10000 -
-                            coin.market_data.circulating_supply / 10000
+                            props.coin.market_data.max_supply / 10000 -
+                            props.coin.market_data.circulating_supply / 10000
                           ).toFixed(2)}
                         </StyledSpan>
                       </StyledH5>
@@ -236,7 +212,7 @@ function Portfolio(props) {
                           $
                           {(searchNumber <= 1 ? 1 : searchNumber) *
                             (
-                              coin.market_data.current_price[
+                              props.coin.market_data.current_price[
                                 props.currencyDefault.toLowerCase()
                               ] / 1000
                             ).toFixed(2)}
@@ -261,4 +237,17 @@ function Portfolio(props) {
   );
 }
 
-export default Portfolio;
+const mapStateToProps = (state) => ({
+    coinNames: state.portfolio.coinNames,
+    coin: state.portfolio.coin
+})
+
+const mapDispatchToProps = {
+  getCoinNames,
+  getCoinInfo,
+  handleCoinNames
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);
+

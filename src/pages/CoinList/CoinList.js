@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { ChartBar, ChartLine, Table } from "components";
 import { StyledDivWrap, StyledH3 } from "./CoinList.styles";
+import { getCoinInfoList } from "../../store/coinList/coinListAction.js";
 
 function CoinList(props) {
-  const [coinList, setCoinList] = useState([]);
-
-  const getCoinInfo = async () => {
-    try {
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${props.currencyDefault}&order=market_cap_desc&per_page=15&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
-      );
-      const newCoinList = [...coinList, data];
-      setCoinList(newCoinList);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
-    getCoinInfo();
+    props.getCoinInfoList(props.currencyDefault);
   }, []);
+  
   return (
     <StyledDivWrap className="table">
       <StyledH3 className="table-text">Overview</StyledH3>
@@ -41,9 +29,17 @@ function CoinList(props) {
         </StyledDivWrap>
       </StyledDivWrap>
       <StyledH3 className="table-text">Overview</StyledH3>
-      <Table coinList={coinList} currencyDefault={props.currencyDefault} />
+      <Table coinList={props.coinList} currencyDefault={props.currencyDefault} />
     </StyledDivWrap>
   );
 }
 
-export default CoinList;
+const mapStateToProps = (state) => ({
+  currencyDefault: state.mainApp.currencyDefault,
+  coinList: state.coinList.coinList
+})
+const mapDispatchToProps = {
+  getCoinInfoList
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoinList);

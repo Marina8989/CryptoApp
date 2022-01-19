@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 import { RiArrowDownSFill } from "react-icons/ri";
 import Sparkline from "../Sparkline/Sparkline.js";
 import {
@@ -18,7 +19,7 @@ import {
   StyledPercent,
 } from "./Table.styles";
 
-const Table = ({ coinList, currencyDefault }) => {
+const Table = (props) => {
   return (
     <StyledTable>
       <StyledTHead>
@@ -49,7 +50,7 @@ const Table = ({ coinList, currencyDefault }) => {
         </StyledTr>
       </StyledTHead>
       <StyledTBody>
-        {coinList.map((coin) =>
+        {props.coinList.map((coin) =>
           coin.map((item, index) => (
             <StyledTr scope="row">
               <TableRow>{index + 1}</TableRow>
@@ -61,7 +62,7 @@ const Table = ({ coinList, currencyDefault }) => {
                 </TableSymbol>
               </TableRow>
               <TableRow>
-                <StyledCurrency>{currencyDefault}</StyledCurrency>
+                <StyledCurrency>{props.currencyDefault}</StyledCurrency>
                 <StyledCurentPrice>
                   {(item.current_price / 1000).toFixed(3)}
                 </StyledCurentPrice>
@@ -127,7 +128,7 @@ const Table = ({ coinList, currencyDefault }) => {
                 />
               </TableRow>
               <TableRow>
-                <Sparkline item={item.id} currencyDefault={currencyDefault} />
+                <Sparkline item={item.id} currencyDefault={props.currencyDefault} />
               </TableRow>
             </StyledTr>
           ))
@@ -136,5 +137,10 @@ const Table = ({ coinList, currencyDefault }) => {
     </StyledTable>
   );
 };
+const mapStateToProps = (state) => ({
+  currencyDefault: state.mainApp.currencyDefault,
+  coinList: state.coinList.coinList
+})
+const mapDispatchToProps = {}
 
-export default Table;
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

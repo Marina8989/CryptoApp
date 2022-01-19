@@ -34,8 +34,6 @@ function CoinPage(props) {
   useEffect(() => {
     props.getCoinData(props.match.params.id);
   }, [props.match.params.id]);
-  console.log("coinpage", props.coin);
-  console.log("coin page", props.isVisible);
   return (
     <StyledOuterDiv>
       <StyledH3>Your summary</StyledH3>
