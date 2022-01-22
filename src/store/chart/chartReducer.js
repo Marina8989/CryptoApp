@@ -12,10 +12,10 @@ function chartReducer(state=initialState, action){
         case GET_CHART_INFO:
             return{
                 ...state,
-                chartMarket: action.payload.total_volumes.map((el) => el[1]),
-                chartLabel: action.payload.total_volumes.map((el) => new Date(el[0]).getDate()),
-                chartMarketPrices: action.payload.prices.map((el) => el[1]),
-                chartLabelPrices: action.payload.prices.map((el) => new Date(el[0]).getDate())
+                chartMarket: action.payload.marketVolume,
+                chartLabel: action.payload.labelVolume,
+                chartMarketPrices: action.payload.marketPrices,
+                chartLabelPrices: action.payload.labelPrices
             } 
         default:
             return state;

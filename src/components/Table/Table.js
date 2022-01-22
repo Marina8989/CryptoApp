@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { RiArrowDownSFill } from "react-icons/ri";
 import Sparkline from "../Sparkline/Sparkline.js";
 import {
@@ -18,6 +18,23 @@ import {
   StyledCurentPrice,
   StyledPercent,
 } from "./Table.styles";
+
+function priceModify(num1, num2, num3) {
+  return (num1 / num2).toFixed(num3);
+}
+function numberModify(num) {
+  return num.toFixed(2);
+}
+function inputModify(num1, num2) {
+  return (num1 / 100000000).toFixed(2) - (num2 / 10000000000).toFixed(2);
+}
+function procentageColor(num) {
+  if (num > 0) {
+    return "green";
+  } else {
+    return "red";
+  }
+}
 
 const Table = (props) => {
   return (
@@ -64,71 +81,65 @@ const Table = (props) => {
               <TableRow>
                 <StyledCurrency>{props.currencyDefault}</StyledCurrency>
                 <StyledCurentPrice>
-                  {(item.current_price / 1000).toFixed(3)}
+                  {priceModify(item.current_price, 1000, 3)}
                 </StyledCurentPrice>
               </TableRow>
               <TableRow
-                className={
-                  item.price_change_percentage_1h_in_currency > 0
-                    ? "green"
-                    : "red"
-                }
+                className={procentageColor(
+                  item.price_change_percentage_1h_in_currency
+                )}
               >
                 <StyledPercent>
-                  {item.price_change_percentage_1h_in_currency.toFixed(2)}%
+                  {numberModify(item.price_change_percentage_1h_in_currency)}%
                 </StyledPercent>
               </TableRow>
               <TableRow
-                className={
-                  item.price_change_percentage_24h_in_currency > 0
-                    ? "green"
-                    : "red"
-                }
+                className={procentageColor(
+                  item.price_change_percentage_24h_in_currency
+                )}
               >
                 <StyledPercent>
-                  {item.price_change_percentage_24h_in_currency.toFixed(2)}%
+                  {numberModify(item.price_change_percentage_24h_in_currency)}%
                 </StyledPercent>
               </TableRow>
               <TableRow
-                className={
-                  item.price_change_percentage_7d_in_currency > 0
-                    ? "green"
-                    : "red"
-                }
+                className={procentageColor(
+                  item.price_change_percentage_7d_in_currency
+                )}
               >
                 <StyledPercent>
-                  {item.price_change_percentage_7d_in_currency.toFixed(2)}%
+                  {numberModify(item.price_change_percentage_7d_in_currency)}%
                 </StyledPercent>
               </TableRow>
               <TableRow>
                 <TableRange>
-                  {(item.total_volume / 100000000).toFixed(2)} -{" "}
-                  {(item.market_cap / 10000000000).toFixed(2)}
+                  {priceModify(item.total_volume, 100000000, 2)}- 
+                  {priceModify(item.market_cap, 10000000000, 2)}
                 </TableRange>
                 <StyledInput
                   type="range"
-                  value={
-                    (item.total_volume / 100000000).toFixed(2) -
-                    (item.market_cap / 10000000000).toFixed(2)
-                  }
+                  value={inputModify(item.total_volume, item.market_cap)}
                 />
               </TableRow>
               <TableRow>
                 <TableRange>
-                  {(item.circulating_supply / 100000000).toFixed(2)} -{" "}
-                  {(item.total_supply / 1000000000).toFixed(2)}
+                  {priceModify(item.circulating_supply, 100000000, 2)}- 
+                  {priceModify(item.total_supply, 10000000000, 2)}
                 </TableRange>
                 <br />
                 <StyledInput
                   type="range"
-                  value={
-                    (item.circulating_supply / 100000000).toFixed(2) -
-                    (item.total_supply / 1000000000).toFixed(2)
-                  }
+                  value={inputModify(
+                    item.circulating_supply,
+                    item.total_supply
+                  )}
                 />
               </TableRow>
               <TableRow>
-                <Sparkline item={item.id} currencyDefault={props.currencyDefault} />
+                <Sparkline
+                  item={item.id}
+                  currencyDefault={props.currencyDefault}
+                />
               </TableRow>
             </StyledTr>
           ))
@@ -139,8 +150,8 @@ const Table = (props) => {
 };
 const mapStateToProps = (state) => ({
   currencyDefault: state.mainApp.currencyDefault,
-  coinList: state.coinList.coinList
-})
-const mapDispatchToProps = {}
+  coinList: state.coinList.coinList,
+});
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

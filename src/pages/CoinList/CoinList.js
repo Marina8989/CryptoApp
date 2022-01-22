@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { ChartBar, ChartLine, Table } from "components";
 import { StyledDivWrap, StyledH3 } from "./CoinList.styles";
-import { getCoinInfoList } from "../../store/coinList/coinListAction.js";
+import { getCoinInfoList } from "store/coinList/coinListAction.js";
 
 function CoinList(props) {
   useEffect(() => {

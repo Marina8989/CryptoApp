@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
 import ChartLineLegend from "../ChartLineLegend/ChartLineLegend.js";
-import { getChartInfo } from "../../store/chart/chartAction.js";
+import { getChartInfo } from "store/chart/chartAction.js";
 
 
 function ChartLine(props) {

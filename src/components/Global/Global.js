@@ -9,7 +9,11 @@ import {
   StyledInputRangeGlobal,
   StyledH4,
 } from "./Global.styles";
-import { getGlobalInfo } from "../../store/global/globalAction.js";
+import { getGlobalInfo } from "store/global/globalAction.js";
+
+function modifyNumber(num1) {
+  return (num1 / 100000000000).toFixed(2);
+}
 
 function Global(props) {
   useEffect(() => {
@@ -24,18 +28,16 @@ function Global(props) {
             <StyledH4>Exchange: {item.data.markets}</StyledH4>
             <StyledH4>
               <BsDot className="dot" />
-              {(
-                item.data.total_volume[props.currencyDefault.toLowerCase()] /
-                10000000000
-              ).toFixed(2)}
+              {modifyNumber(
+                item.data.total_volume[props.currencyDefault.toLowerCase()]
+              )}
               T <RiArrowUpSFill className="arrow-up" />
             </StyledH4>
             <StyledH4>
               <BsDot className="dot" />
-              {(
-                item.data.total_volume[props.currencyDefault.toLowerCase()] /
-                100000000000
-              ).toFixed(2)}
+              {modifyNumber(
+                item.data.total_market_cap[props.currencyDefault.toLowerCase()]
+              )}
               B <RiArrowUpSFill className="arrow-up" />
             </StyledH4>
             <StyledH4>

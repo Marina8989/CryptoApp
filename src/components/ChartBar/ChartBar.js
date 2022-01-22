@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
 import ChartBarLegend from "../ChartBarLegend/ChartBarLegend.js";
-import { getChartInfo } from "../../store/chart/chartAction.js";
+import { getChartInfo } from "store/chart/chartAction.js";
 
 function ChartBar(props) {
   useEffect(() => {

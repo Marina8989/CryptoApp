@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { debounce } from "lodash";
 import { AddAsset } from "components";
@@ -27,7 +27,11 @@ import {
   StyledH4Wrap,
 } from "./Portfolio.styles";
 import "../../index.css";
-import {getCoinNames, getCoinInfo, handleCoinNames} from "../../store/portfolio/portfolioAction.js";
+import {
+  getCoinNames,
+  getCoinInfo,
+  handleCoinNames,
+} from "store/portfolio/portfolioAction.js";
 
 function Portfolio(props) {
   const [searchValue, setSearchValue] = useState("");
@@ -45,7 +49,7 @@ function Portfolio(props) {
   const handleChangeDate = (e) => {
     setSearchDate(e.target.value);
   };
- 
+
   const handleClick = (searchValue) => {
     props.handleCoinNames();
     setSearchValue(searchValue);
@@ -238,16 +242,14 @@ function Portfolio(props) {
 }
 
 const mapStateToProps = (state) => ({
-    coinNames: state.portfolio.coinNames,
-    coin: state.portfolio.coin
-})
+  coinNames: state.portfolio.coinNames,
+  coin: state.portfolio.coin,
+});
 
 const mapDispatchToProps = {
   getCoinNames,
   getCoinInfo,
-  handleCoinNames
-}
-
+  handleCoinNames,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);
-

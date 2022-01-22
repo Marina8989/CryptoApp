@@ -26,7 +26,7 @@ import {
   StyledH4,
   StyledDivWrap,
 } from "./CoinPage.styles";
-import { getCoinData } from "../../store/coinPage/coinPageAction.js";
+import { getCoinData } from "store/coinPage/coinPageAction.js";
 
 const today = new Date().toString();
 
