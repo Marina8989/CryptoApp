@@ -1,37 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
-import axios from "axios";
+import { connect } from "react-redux";
 import ChartBarLegend from "../ChartBarLegend/ChartBarLegend.js";
+import { getChartInfo } from "../../store/chart/chartAction.js";
 
 function ChartBar(props) {
-  const [chartMarket, setChartMarket] = useState([]);
-  const [chartLabel, setChartLabel] = useState([]);
-
-  const getChartInfo = async (coinCurrency) => {
-    const { data } = await axios(
-      `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${coinCurrency}&days=30&interval=daily`
-    );
-    const chartMarket = data.total_volumes.map((el) => el[1]);
-    const chartLabel = data.total_volumes.map((el) =>
-      new Date(el[0]).getDate()
-    );
-    setChartMarket(chartMarket);
-    setChartLabel(chartLabel);
-  };
   useEffect(() => {
-    getChartInfo(props.currencyDefault.toLowerCase());
+    props.getChartInfo(props.currencyDefault.toLowerCase());
   }, []);
-
   return (
     <div className="chart-line">
       <ChartBarLegend />
       <Bar
         data={{
-          labels: chartLabel,
+          labels: props.chartLabel,
           datasets: [
             {
               label: props.currencyDefault,
-              data: chartMarket,
+              data: props.chartMarket,
               fill: true,
               backgroundColor: "rgb(33,114,229)",
             },
@@ -69,4 +55,13 @@ function ChartBar(props) {
   );
 }
 
-export default ChartBar;
+const mapStateToProps = (state) => ({
+   currencyDefault: state.mainApp.currencyDefault,
+   chartMarket: state.chart.chartMarket,
+   chartLabel: state.chart.chartLabel
+})
+const mapDispatchToProps = {
+  getChartInfo
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChartBar);
