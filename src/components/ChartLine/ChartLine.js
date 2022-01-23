@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import ChartLineLegend from "../ChartLineLegend/ChartLineLegend.js";
 import { getChartInfo } from "store/chart/chartAction.js";
 
-
 function ChartLine(props) {
   useEffect(() => {
     props.getChartInfo(props.currencyDefault.toLowerCase());
@@ -59,12 +58,12 @@ function ChartLine(props) {
 }
 
 const mapStateToProps = (state) => ({
-   currencyDefault: state.mainApp.currencyDefault,
-   chartMarket: state.chart.chartMarketPrices,
-   chartLabel: state.chart.chartLabelPrices
-})
+  currencyDefault: state.mainApp.currencyDefault,
+  chartMarket: state.chart.chartMarketPrices,
+  chartLabel: state.chart.chartLabelPrices,
+});
 const mapDispatchToProps = {
-  getChartInfo
-}
+  getChartInfo,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChartLine);

@@ -56,12 +56,12 @@ function ChartBar(props) {
 }
 
 const mapStateToProps = (state) => ({
-   currencyDefault: state.mainApp.currencyDefault,
-   chartMarket: state.chart.chartMarket,
-   chartLabel: state.chart.chartLabel
-})
+  currencyDefault: state.mainApp.currencyDefault,
+  chartMarket: state.chart.chartMarket,
+  chartLabel: state.chart.chartLabel,
+});
 const mapDispatchToProps = {
-  getChartInfo
-}
+  getChartInfo,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChartBar);

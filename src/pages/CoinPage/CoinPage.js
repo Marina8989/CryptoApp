@@ -3,28 +3,28 @@ import { connect } from "react-redux";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import {
   StyledDiv,
-  StyledDivWeb,
-  StyledOuterDiv,
+  DivWeb,
+  OuterDiv,
   StyledH3,
   StyledImg,
-  StyledH3Text,
+  H3Text,
   StyledPar,
   StyledIcon,
-  StyledDivFlex,
+  DivFlex,
   StyledSpan,
-  StyledDivProfit,
-  StyledThridDiv,
-  StyledLayerIcon,
-  StyledDivATH,
-  StyledDivATL,
-  StyledH3Price,
-  StyledH6Day,
-  StyledPlusIcon,
-  StyledDivSeparate,
+  DivProfit,
+  ThridDiv,
+  LayerIcon,
+  DivATH,
+  DivATL,
+  H3Price,
+  H6Day,
+  PlusIcon,
+  DivSeparate,
   StyledInput,
   StyledDescription,
   StyledH4,
-  StyledDivWrap,
+  DivWrap,
 } from "./CoinPage.styles";
 import { getCoinData } from "store/coinPage/coinPageAction.js";
 
@@ -35,27 +35,27 @@ function CoinPage(props) {
     props.getCoinData(props.match.params.id);
   }, [props.match.params.id]);
   return (
-    <StyledOuterDiv>
+    <OuterDiv>
       <StyledH3>Your summary</StyledH3>
       {props.isVisible && (
-        <StyledDivFlex>
-          <StyledDivWrap>
+        <DivFlex>
+          <DivWrap>
             <StyledDiv>
               <StyledImg src={props.coin.image.small} />
-              <StyledH3Text>
+              <H3Text>
                 {props.coin.name} ({props.coin.symbol.toUpperCase()})
-              </StyledH3Text>
+              </H3Text>
             </StyledDiv>
 
-            <StyledDivWeb>
+            <DivWeb>
               <StyledPar>
                 <StyledIcon /> {props.coin.links.homepage[0]}
               </StyledPar>
-            </StyledDivWeb>
-          </StyledDivWrap>
-          <StyledDivWrap>
-            <StyledDivProfit>
-              <StyledH3Price>
+            </DivWeb>
+          </DivWrap>
+          <DivWrap>
+            <DivProfit>
+              <H3Price>
                 ${props.coin.market_data.current_price.usd.toFixed(2) / 1000}{" "}
                 <StyledSpan
                   className={
@@ -70,38 +70,38 @@ function CoinPage(props) {
                   )}
                   %
                 </StyledSpan>
-              </StyledH3Price>
-              <StyledDivWrap>
-                <StyledLayerIcon />
-              </StyledDivWrap>
-              <StyledDivWrap>
-                <StyledDivATH>
+              </H3Price>
+              <DivWrap>
+                <LayerIcon />
+              </DivWrap>
+              <DivWrap>
+                <DivATH>
                   <StyledH4>
                     <RiArrowUpSFill className="green" /> All Time High:{" "}
                     <StyledSpan>
                       ${props.coin.market_data.ath.usd.toFixed(2) / 1000}
                     </StyledSpan>
                   </StyledH4>
-                  <StyledH6Day>{today}</StyledH6Day>
-                </StyledDivATH>
-                <StyledDivATL>
+                  <H6Day>{today}</H6Day>
+                </DivATH>
+                <DivATL>
                   <StyledH4>
                     <RiArrowDownSFill className="red" /> All Time Low:{" "}
                     <StyledSpan>${props.coin.market_data.atl.usd}</StyledSpan>
                   </StyledH4>
-                  <StyledH6Day>{today}</StyledH6Day>
-                </StyledDivATL>
-              </StyledDivWrap>
-            </StyledDivProfit>
-          </StyledDivWrap>
-          <StyledThridDiv>
+                  <H6Day>{today}</H6Day>
+                </DivATL>
+              </DivWrap>
+            </DivProfit>
+          </DivWrap>
+          <ThridDiv>
             <StyledH4>
-              <StyledPlusIcon /> Market Cap: $
+              <PlusIcon /> Market Cap: $
               {(props.coin.market_data.market_cap.usd / 1000000000).toFixed(2)}{" "}
               B
             </StyledH4>
             <StyledH4>
-              <StyledPlusIcon /> Fully Diluted Valuation: $
+              <PlusIcon /> Fully Diluted Valuation: $
               {(
                 props.coin.market_data.fully_diluted_valuation.usd /
                 1000000000000
@@ -109,45 +109,45 @@ function CoinPage(props) {
               T
             </StyledH4>
             <StyledH4>
-              <StyledPlusIcon /> Volume 24h: $
+              <PlusIcon /> Volume 24h: $
               {(props.coin.market_data.total_volume.usd / 10000000000).toFixed(
                 2
               )}{" "}
               B
             </StyledH4>
             <StyledH4>
-              <StyledPlusIcon /> Volume/Market: $
+              <PlusIcon /> Volume/Market: $
               {(props.coin.market_data.market_cap.usd / 1000000000).toFixed(2) -
                 (props.coin.market_data.total_volume.usd / 10000000000).toFixed(
                   2
                 )}{" "}
               T
             </StyledH4>
-            <StyledDivSeparate>
+            <DivSeparate>
               <StyledH4>
-                <StyledPlusIcon /> Total Volume: $
+                <PlusIcon /> Total Volume: $
                 {(props.coin.market_data.total_volume.btc / 10000).toFixed(2)}{" "}
                 BTC
               </StyledH4>
               <StyledH4>
-                <StyledPlusIcon /> Circulating Supply: $
+                <PlusIcon /> Circulating Supply: $
                 {props.coin.market_data.circulating_supply} BTC
               </StyledH4>
               <StyledH4>
-                <StyledPlusIcon /> Max Supply: $
+                <PlusIcon /> Max Supply: $
                 {props.coin.market_data.circulating_supply} BTC
               </StyledH4>
               <StyledInput type="range" />
-            </StyledDivSeparate>
-          </StyledThridDiv>
-        </StyledDivFlex>
+            </DivSeparate>
+          </ThridDiv>
+        </DivFlex>
       )}
 
       <StyledH3>Description</StyledH3>
       {props.isVisible && (
         <StyledDescription>{props.coin.description.en}</StyledDescription>
       )}
-    </StyledOuterDiv>
+    </OuterDiv>
   );
 }
 

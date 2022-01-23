@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import {
-  StyledMenuCurrency,
-  StyledMenuCurrencyH4,
+  MenuCurrency,
+  MenuCurrencyH4,
   StyledButton,
 } from "./NavbarCurrency.styles";
-import { findItem } from "../../store/mainApp/mainAppAction.js";
+import { findItem } from "store/mainApp/mainAppAction.js";
 
 function NavbarCurrency(props) {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,11 +20,11 @@ function NavbarCurrency(props) {
     props.findItem(el);
   };
   return (
-    <StyledMenuCurrency>
-      <StyledMenuCurrencyH4 onClick={handleClick}>
+    <MenuCurrency>
+      <MenuCurrencyH4 onClick={handleClick}>
         {props.currencyDefault}
         <MdArrowDropDown className="menu-icon-arrow" />
-      </StyledMenuCurrencyH4>
+      </MenuCurrencyH4>
       {isVisible && (
         <>
           {props.currencyList.map((item, index) => (
@@ -34,7 +34,7 @@ function NavbarCurrency(props) {
           ))}
         </>
       )}
-    </StyledMenuCurrency>
+    </MenuCurrency>
   );
 }
 const mapStateToProps = (state) => ({

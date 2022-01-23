@@ -3,12 +3,12 @@ import { BsLink45Deg } from "react-icons/bs";
 import { IoLayers } from "react-icons/io5";
 import { AiFillPlusSquare } from "react-icons/ai";
 
-export const StyledOuterDiv = styled.div`
+export const OuterDiv = styled.div`
    width: 75%;
    margin: 4rem auto;
    padding: 1.3rem 0;
 `
-export const StyledDivFlex = styled.div`
+export const DivFlex = styled.div`
    display: flex;
    justify-content: space-between;
 `
@@ -21,7 +21,7 @@ export const StyledDiv = styled.div`
   border-radius: 7px;
   margin-bottom: 2rem;
 `
-export const StyledDivWeb = styled.div`
+export const DivWeb = styled.div`
   background: rgb(25,27,31);
   width: 200px;
   height: 60px;
@@ -36,7 +36,7 @@ export const StyledH3 = styled.div`
   font-size: 20px;
   margin-bottom: 2rem;
 `
-export const StyledH3Text = styled.h3`
+export const H3Text = styled.h3`
    padding-top: .6rem;
 `
 
@@ -59,7 +59,7 @@ export const StyledSpan = styled.span`
    font-size: 14px;
    margin: .5rem;
 `
-export const StyledDivProfit = styled.div`
+export const DivProfit = styled.div`
   background: rgb(25,27,31);
   width: 330px;
   height: 293px;
@@ -68,7 +68,7 @@ export const StyledDivProfit = styled.div`
   border-radius: 7px;
   margin-bottom: 2rem;
 `
-export const StyledThridDiv = styled.div`
+export const ThridDiv = styled.div`
   background: rgb(25,27,31);
   width: 390px;
   height: 293px;
@@ -77,29 +77,29 @@ export const StyledThridDiv = styled.div`
   margin-bottom: 2rem;
 
 `
-export const StyledLayerIcon = styled(IoLayers)`
+export const LayerIcon = styled(IoLayers)`
   margin: 1.7rem 0 1rem 0;
   font-size: 29px;
 `
 
-export const StyledDivATH = styled.div`
+export const DivATH = styled.div`
   margin: 1.3rem auto;
   text-align: center;
 `
-export const StyledDivATL = styled.div`
+export const DivATL = styled.div`
   margin: 1.3rem auto;
   text-align: center;
 `
-export const StyledH3Price = styled.h3``
+export const H3Price = styled.h3``
 
-export const StyledH6Day = styled.h6`
+export const H6Day = styled.h6`
    margin-bottom: 1.2rem;
 `
-export const StyledPlusIcon = styled(AiFillPlusSquare)`
+export const PlusIcon = styled(AiFillPlusSquare)`
   color: rgb(50,50,255);
   margin-right: .6rem;
 `
-export const StyledDivSeparate = styled.div`
+export const DivSeparate = styled.div`
    margin-top: 2.3rem;
 `
 export const StyledInput = styled.input`
@@ -113,4 +113,4 @@ export const StyledDescription = styled.p`
    background: rgb(25,27,31);
 `
 export const StyledH4 = styled.h4``
-export const StyledDivWrap = styled.div``
+export const DivWrap = styled.div``

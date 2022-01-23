@@ -5,8 +5,8 @@ import { BsDot } from "react-icons/bs";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
 import {
   StyledGlobal,
-  StyledGlobalContainer,
-  StyledInputRangeGlobal,
+  GlobalContainer,
+  InputRangeGlobal,
   StyledH4,
 } from "./Global.styles";
 import { getGlobalInfo } from "store/global/globalAction.js";
@@ -20,7 +20,7 @@ function Global(props) {
     props.getGlobalInfo();
   }, []);
   return (
-    <StyledGlobalContainer>
+    <GlobalContainer>
       {props.global.map((item, index) => {
         return (
           <StyledGlobal key={index}>
@@ -43,17 +43,17 @@ function Global(props) {
             <StyledH4>
               <FaBitcoin className="bicoin-icon" />{" "}
               {item.data.market_cap_percentage.btc.toFixed(2)}%{" "}
-              <StyledInputRangeGlobal type="range" />
+              <InputRangeGlobal type="range" />
             </StyledH4>
             <StyledH4>
               <FaEthereum className="ethereum-icon" />{" "}
               {item.data.market_cap_percentage.eth.toFixed(2)}%{" "}
-              <StyledInputRangeGlobal type="range" />
+              <InputRangeGlobal type="range" />
             </StyledH4>
           </StyledGlobal>
         );
       })}
-    </StyledGlobalContainer>
+    </GlobalContainer>
   );
 }
 

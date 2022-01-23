@@ -20,7 +20,7 @@ function Sparkline(props) {
   }, []);
   return (
     <div className="chart-line">
-      <Line 
+      <Line
         data={{
           labels: chartLabels,
           datasets: [

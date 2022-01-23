@@ -7,7 +7,7 @@ export const StyledLegend = styled.div`
   line-height: 1.4;
   font-weight: lighter;
 `;
-export const StyledLegendH4 = styled.h4`
+export const LegendH4 = styled.h4`
   font-size: 20px;
 `;
 

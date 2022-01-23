@@ -4,24 +4,24 @@ import { debounce } from "lodash";
 import { AddAsset } from "components";
 import {
   StyledDiv,
-  StyledModalSection,
-  StyledModalCoin,
-  StyledModalInputText,
-  StyledModalImg,
-  StyledModalBtn,
-  StyledModalBtnClose,
-  StyledModalBtnSave,
-  StyledDropdownModal,
-  StyledDropdownModalButton,
+  ModalSection,
+  ModalCoin,
+  ModalInputText,
+  ModalImg,
+  ModalBtn,
+  ModalBtnClose,
+  ModalBtnSave,
+  DropdownModal,
+  DropdownModalButton,
   StyledContainer,
-  StyledTextDisplay,
-  StyledDisplayInfoContainer,
-  StyledCoinInfoDisplay,
-  StyledDataDisplay,
-  StyledDisplayMarketPrice,
+  TextDisplay,
+  DisplayInfoContainer,
+  CoinInfoDisplay,
+  DataDisplay,
+  DisplayMarketPrice,
   StyledH5,
   StyledSpan,
-  StyledDivWrap,
+  DivWrap,
   StyledH2,
   StyledH5Wrap,
   StyledH4Wrap,
@@ -69,22 +69,22 @@ function Portfolio(props) {
   };
 
   return (
-    <StyledDivWrap>
+    <DivWrap>
       <AddAsset handleVisibility={handleVisibility} />
       {isVisible && (
         <StyledDiv>
           <StyledH2>Select Coins</StyledH2>
-          <StyledModalSection>
-            <StyledModalCoin>
-              <StyledModalImg
+          <ModalSection>
+            <ModalCoin>
+              <ModalImg
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/BTC_Logo.svg/1200px-BTC_Logo.svg.png"
                 alt="logo"
               />
               <StyledH5Wrap>Bitcoin (BTC)</StyledH5Wrap>
-            </StyledModalCoin>
+            </ModalCoin>
 
-            <StyledDivWrap>
-              <StyledModalInputText
+            <DivWrap>
+              <ModalInputText
                 value={searchValue}
                 onChange={handleChange}
                 type="text"
@@ -92,66 +92,64 @@ function Portfolio(props) {
                 className="one"
               />
               <br />
-              <StyledModalInputText
+              <ModalInputText
                 value={searchNumber}
                 onChange={handleChangeNumber}
                 type="number"
                 placeholder="Purchased Amount"
               />
               <br />
-              <StyledModalInputText
+              <ModalInputText
                 value={searchDate}
                 onChange={handleChangeDate}
                 type="date"
                 placeholder="Purchased Date"
               />
               <br />
-            </StyledDivWrap>
-          </StyledModalSection>
+            </DivWrap>
+          </ModalSection>
           <>
-            <StyledModalBtn>
-              <StyledModalBtnClose onClick={handleClose}>
-                Close
-              </StyledModalBtnClose>
-              <StyledModalBtnSave onClick={handleAssetInfo}>
+            <ModalBtn>
+              <ModalBtnClose onClick={handleClose}>Close</ModalBtnClose>
+              <ModalBtnSave onClick={handleAssetInfo}>
                 Save and Continue
-              </StyledModalBtnSave>
-            </StyledModalBtn>
+              </ModalBtnSave>
+            </ModalBtn>
           </>
         </StyledDiv>
       )}
 
       <>
-        <StyledDropdownModal>
+        <DropdownModal>
           {props.coinNames.map((coin) => (
-            <StyledDivWrap>
-              <StyledDropdownModalButton
+            <DivWrap>
+              <DropdownModalButton
                 onClick={() => handleClick(coin.id)}
                 key={coin.id}
               >
                 {coin.name}
-              </StyledDropdownModalButton>
+              </DropdownModalButton>
               <br />
               <br />
-            </StyledDivWrap>
+            </DivWrap>
           ))}
-        </StyledDropdownModal>
+        </DropdownModal>
         <>
           {props.coin && (
             <StyledContainer>
-              <StyledTextDisplay>Your statistics</StyledTextDisplay>
-              <StyledDisplayInfoContainer>
-                <StyledCoinInfoDisplay>
-                  <StyledModalImg src={props.coin.image.small} />
+              <TextDisplay>Your statistics</TextDisplay>
+              <DisplayInfoContainer>
+                <CoinInfoDisplay>
+                  <ModalImg src={props.coin.image.small} />
                   <StyledH5Wrap>
                     {props.coin.name} ({props.coin.symbol.toUpperCase()})
                   </StyledH5Wrap>
-                </StyledCoinInfoDisplay>
+                </CoinInfoDisplay>
 
-                <StyledDisplayMarketPrice>
-                  <StyledDivWrap>
+                <DisplayMarketPrice>
+                  <DivWrap>
                     <StyledH4Wrap>Market price</StyledH4Wrap>
-                    <StyledDataDisplay>
+                    <DataDisplay>
                       <StyledH5>
                         Current price:{" "}
                         <StyledSpan>
@@ -198,12 +196,12 @@ function Portfolio(props) {
                           ).toFixed(2)}
                         </StyledSpan>
                       </StyledH5>
-                    </StyledDataDisplay>
-                  </StyledDivWrap>
+                    </DataDisplay>
+                  </DivWrap>
 
-                  <StyledDivWrap>
+                  <DivWrap>
                     <StyledH4Wrap>Your coin</StyledH4Wrap>
-                    <StyledDataDisplay>
+                    <DataDisplay>
                       <StyledH5>
                         Current amount:{" "}
                         <StyledSpan>
@@ -229,15 +227,15 @@ function Portfolio(props) {
                       <StyledH5>
                         Purchased date: <StyledSpan>{searchDate}</StyledSpan>
                       </StyledH5>
-                    </StyledDataDisplay>
-                  </StyledDivWrap>
-                </StyledDisplayMarketPrice>
-              </StyledDisplayInfoContainer>
+                    </DataDisplay>
+                  </DivWrap>
+                </DisplayMarketPrice>
+              </DisplayInfoContainer>
             </StyledContainer>
           )}
         </>
       </>
-    </StyledDivWrap>
+    </DivWrap>
   );
 }
 

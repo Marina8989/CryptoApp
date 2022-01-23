@@ -12,20 +12,20 @@ export const StyledDiv = styled.div`
   left: 27%;
 `;
 
-export const StyledModalSection = styled.div`
+export const ModalSection = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 2rem 0;
 `;
 
-export const StyledModalCoin = styled.div`
+export const ModalCoin = styled.div`
   width: 124px;
   padding: 2.4rem 1.8rem;
   border-radius: 7px;
   background: var(--light-grey);
 `;
 
-export const StyledModalInputText = styled.input`
+export const ModalInputText = styled.input`
   margin: 0.3rem;
   padding: 0.8rem 2.5rem;
   border-radius: 7px;
@@ -36,18 +36,18 @@ export const StyledModalInputText = styled.input`
   font-size: 15px;
 `;
 
-export const StyledModalImg = styled.img`
+export const ModalImg = styled.img`
   width: 35px;
   border-radius: 5px;
   padding: 0.6rem;
   background: rgba(200, 200, 201, 0.397);
 `;
 
-export const StyledModalBtn = styled.div`
+export const ModalBtn = styled.div`
   margin: 1rem 1rem;
 `;
 
-export const StyledModalBtnClose = styled.button`
+export const ModalBtnClose = styled.button`
   color: rgb(50, 205, 50);
   padding: 0.8rem 3rem;
   background: var(--off-white);
@@ -58,7 +58,7 @@ export const StyledModalBtnClose = styled.button`
   font-size: 14px;
 `;
 
-export const StyledModalBtnSave = styled.button`
+export const ModalBtnSave = styled.button`
   color: var(--off-white);
   background: rgb(50, 205, 50);
   padding: 0.8rem 1rem;
@@ -69,14 +69,14 @@ export const StyledModalBtnSave = styled.button`
   font-size: 13px;
 `;
 
-export const StyledDropdownModal = styled.div`
+export const DropdownModal = styled.div`
   position: absolute;
   top: 24rem;
   left: 38rem;
   z-index: 20;
 `;
 
-export const StyledDropdownModalButton = styled.button`
+export const DropdownModalButton = styled.button`
   padding: 0.5rem 1.4rem;
 `;
 
@@ -90,24 +90,24 @@ export const StyledContainer = styled.div`
   width: 90%;
 `;
 
-export const StyledTextDisplay = styled.h3`
+export const TextDisplay = styled.h3`
   padding: 2rem 0 4rem 0;
 `;
 
-export const StyledDisplayInfoContainer = styled.div`
+export const DisplayInfoContainer = styled.div`
   display: flex;
   background: rgba(128, 128, 128, 0.151);
   padding: 2rem 2rem 0.5rem 2rem;
   border-radius: 7px;
 `;
-export const StyledCoinInfoDisplay = styled.div`
+export const CoinInfoDisplay = styled.div`
   background: var(--dark-grey);
   text-align: center;
   padding: 3rem 1.5rem;
   border-radius: 7px;
   margin: 0 2rem 3rem 0;
 `;
-export const StyledDataDisplay = styled.div`
+export const DataDisplay = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 0.3rem 0;
@@ -116,7 +116,7 @@ export const StyledDataDisplay = styled.div`
   border-radius: 7px;
 `;
 
-export const StyledDisplayMarketPrice = styled.div`
+export const DisplayMarketPrice = styled.div`
   display: block;
 `;
 
@@ -128,7 +128,7 @@ export const StyledSpan = styled.span`
   color: rgb(39, 121, 39);
 `;
 
-export const StyledDivWrap = styled.div``
+export const DivWrap = styled.div``
 export const StyledH2 = styled.h2``
 export const StyledH5Wrap = styled.h5``
 export const StyledH4Wrap = styled.h4``

@@ -15,7 +15,7 @@ import {
   StyledInput,
   StyledSpan,
   StyledCurrency,
-  StyledCurentPrice,
+  CurentPrice,
   StyledPercent,
 } from "./Table.styles";
 
@@ -80,9 +80,9 @@ const Table = (props) => {
               </TableRow>
               <TableRow>
                 <StyledCurrency>{props.currencyDefault}</StyledCurrency>
-                <StyledCurentPrice>
+                <CurentPrice>
                   {priceModify(item.current_price, 1000, 3)}
-                </StyledCurentPrice>
+                </CurentPrice>
               </TableRow>
               <TableRow
                 className={procentageColor(
@@ -113,7 +113,7 @@ const Table = (props) => {
               </TableRow>
               <TableRow>
                 <TableRange>
-                  {priceModify(item.total_volume, 100000000, 2)}- 
+                  {priceModify(item.total_volume, 100000000, 2)}-
                   {priceModify(item.market_cap, 10000000000, 2)}
                 </TableRange>
                 <StyledInput
@@ -123,7 +123,7 @@ const Table = (props) => {
               </TableRow>
               <TableRow>
                 <TableRange>
-                  {priceModify(item.circulating_supply, 100000000, 2)}- 
+                  {priceModify(item.circulating_supply, 100000000, 2)}-
                   {priceModify(item.total_supply, 10000000000, 2)}
                 </TableRange>
                 <br />

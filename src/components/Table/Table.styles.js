@@ -50,7 +50,7 @@ export const StyledCurrency = styled.span`
    margin-right: .4rem;
    font-weight: bold;
 `
-export const StyledCurentPrice = styled.span`
+export const CurentPrice = styled.span`
   font-weight: bold;
 `
 export const StyledPercent = styled.span`

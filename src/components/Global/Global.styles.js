@@ -13,10 +13,10 @@ export const StyledGlobal = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const StyledGlobalContainer = styled.div`
+export const GlobalContainer = styled.div`
   margin-top: 1.6rem;
 `;
-export const StyledInputRangeGlobal = styled.input`
+export const InputRangeGlobal = styled.input`
   width: 50px;
 `;
 export const StyledH4 = styled.h4``
