@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  StyledLegend,
-  StyledLegendH4,
-  StyledH5,
-} from "./ChartLineLegend.styles";
+import { StyledLegend, LegendH4, StyledH5 } from "./ChartLineLegend.styles";
 
 const today = new Date().toString().split(" ").splice(1, 3).join(" ");
 
@@ -26,9 +22,7 @@ function ChartLineLegend() {
         return (
           <StyledLegend key={item}>
             <StyledH5>Price</StyledH5>
-            <StyledLegendH4>
-              ${(item.low_24h / 1000).toFixed(3)}K
-            </StyledLegendH4>
+            <LegendH4>${(item.low_24h / 1000).toFixed(3)}K</LegendH4>
             <StyledH5>{today}</StyledH5>
           </StyledLegend>
         );

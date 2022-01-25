@@ -8,15 +8,18 @@ import {
   StyledDiv,
   StyledH5,
 } from "./NavbbarInput.styles";
-import { getCoinName, resetList, resetVisibility } from "../../store/navSearch/navSearchAction";
+import {
+  getCoinName,
+  resetList,
+  resetVisibility,
+} from "store/navSearch/navSearchAction";
 
 function NavbarInput(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const prevSearchTermRef = useRef();
-  //const prevSearchTerm = prevSearchTermRef.current;
 
   const throttleRef = useRef(throttle(props.getCoinName, 1000));
-  
+
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
     throttleRef.current(searchTerm);
@@ -64,12 +67,12 @@ function NavbarInput(props) {
 
 const mapStateToProps = (state) => ({
   list: state.navSearch.list,
-  isListVisible: state.navSearch.isListVisible
-})
+  isListVisible: state.navSearch.isListVisible,
+});
 const mapDispatchToProps = {
   getCoinName,
   resetList,
-  resetVisibility
-}
+  resetVisibility,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarInput);

@@ -48,7 +48,7 @@ export const StyledNavSearch = styled.div`
   justify-content: space-around;
 `;
 
-export const StyledDivWrap = styled.div``
+export const DivWrap = styled.div``
 export const StyledH3 = styled.h3`
    margin-bottom: 3rem ;
 `

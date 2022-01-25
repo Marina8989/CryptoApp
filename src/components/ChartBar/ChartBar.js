@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { connect } from "react-redux";
 import ChartBarLegend from "../ChartBarLegend/ChartBarLegend.js";
-import { getChartInfo } from "../../store/chart/chartAction.js";
+import { getChartInfo } from "store/chart/chartAction.js";
 
 function ChartBar(props) {
   useEffect(() => {
@@ -56,12 +56,12 @@ function ChartBar(props) {
 }
 
 const mapStateToProps = (state) => ({
-   currencyDefault: state.mainApp.currencyDefault,
-   chartMarket: state.chart.chartMarket,
-   chartLabel: state.chart.chartLabel
-})
+  currencyDefault: state.mainApp.currencyDefault,
+  chartMarket: state.chart.chartMarket,
+  chartLabel: state.chart.chartLabel,
+});
 const mapDispatchToProps = {
-  getChartInfo
-}
+  getChartInfo,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChartBar);

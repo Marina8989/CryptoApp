@@ -4,9 +4,10 @@ import { GET_GLOBAL_SUCCESS, GET_GLOBAL_ERROR } from "./globalReducer.js";
 export const getGlobalInfo = () => async (dispatch, getState) => {
   try {
     const { data } = await axios(`${process.env.REACT_APP_GLOBAL}`);
+    console.log("ee", data);
     dispatch({
       type: GET_GLOBAL_SUCCESS,
-      payload: data,
+      payload: [data],
     });
   } catch (err) {
     dispatch({

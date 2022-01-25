@@ -9,14 +9,14 @@ export const StyledMenu = styled.div`
   border-radius: 7px;
 `;
 
-export const StyledMenuPortfolio = styled(Link)`
+export const MenuPortfolio = styled(Link)`
   text-decoration: none;
   padding: 0.5rem 1.5rem;
   color: white;
   font-size: 19px;
 `;
 
-export const StyledMenuCoins = styled(Link)`
+export const MenuCoins = styled(Link)`
   background: var(--light-grey);
   color: white;
   border-radius: 5px;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledMenuCurrency = styled.div`
+export const MenuCurrency = styled.div`
   color: white;
   background: var(--light-grey);
   margin-top: -0.4rem;
@@ -12,7 +12,7 @@ export const StyledMenuCurrency = styled.div`
   margin-right: -0.5rem;
 `;
 
-export const StyledMenuCurrencyH4 = styled.h4`
+export const MenuCurrencyH4 = styled.h4`
   display: flex;
   justify-content: center;
 `;

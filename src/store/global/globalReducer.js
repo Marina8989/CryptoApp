@@ -10,7 +10,7 @@ function globalReducer(state = initialState, action) {
     case GET_GLOBAL_SUCCESS:
       return {
         ...state,
-        globalList: [...state.globalList, action.payload],
+        globalList: action.payload,
       };
     case GET_GLOBAL_ERROR:
       return {
