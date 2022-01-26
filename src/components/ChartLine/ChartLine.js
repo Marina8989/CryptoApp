@@ -1,23 +1,28 @@
 import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ChartLineLegend from "../ChartLineLegend/ChartLineLegend.js";
 import { getChartInfo } from "store/chart/chartAction.js";
 
-function ChartLine(props) {
+function ChartLine() {
+  const dispatch = useDispatch();
+  const currencyDefault = useSelector((state) => state.mainApp.currencyDefault);
+  const chartMarket = useSelector((state) => state.chart.chartMarketPrices);
+  const chartLabel = useSelector((state) => state.chart.chartLabelPrices);
+
   useEffect(() => {
-    props.getChartInfo(props.currencyDefault.toLowerCase());
+    dispatch(getChartInfo(currencyDefault.toLowerCase()));
   }, []);
   return (
     <div className="chart-line">
       <ChartLineLegend />
       <Line
         data={{
-          labels: props.chartLabel,
+          labels: chartLabel,
           datasets: [
             {
-              label: props.currencyDefault,
-              data: props.chartMarket,
+              label: currencyDefault,
+              data: chartMarket,
               fill: true,
               backgroundColor: "rgba(23, 82, 34, .2)",
               borderColor: "rgb(1,226,37)",
@@ -57,13 +62,4 @@ function ChartLine(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  currencyDefault: state.mainApp.currencyDefault,
-  chartMarket: state.chart.chartMarketPrices,
-  chartLabel: state.chart.chartLabelPrices,
-});
-const mapDispatchToProps = {
-  getChartInfo,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChartLine);
+export default ChartLine;

@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ChartBar, ChartLine, Table } from "components";
 import { DivWrap, StyledH3 } from "./CoinList.styles";
 import { getCoinInfoList } from "store/coinList/coinListAction.js";
 
 function CoinList(props) {
+   const dispatch = useDispatch();
+   const currencyDefault = useSelector((state) => state.mainApp.currencyDefault);
+   const coinList = useSelector((state) => state.coinList.coinList);
+
   useEffect(() => {
-    props.getCoinInfoList(props.currencyDefault);
+    dispatch(getCoinInfoList(currencyDefault));
   }, []);
 
   return (
@@ -17,32 +21,24 @@ function CoinList(props) {
           <ChartLine
             chartMarket={props.chartMarket}
             chartLabel={props.chartLabel}
-            currencyDefault={props.currencyDefault}
+            currencyDefault={currencyDefault}
           />
         </DivWrap>
         <DivWrap className="chart-display">
           <ChartBar
             chartMarket={props.chartMarket}
             chartLabel={props.chartLabel}
-            currencyDefault={props.currencyDefault}
+            currencyDefault={currencyDefault}
           />
         </DivWrap>
       </DivWrap>
       <StyledH3 className="table-text">Overview</StyledH3>
       <Table
-        coinList={props.coinList}
-        currencyDefault={props.currencyDefault}
+        coinList={coinList}
+        currencyDefault={currencyDefault}
       />
     </DivWrap>
   );
 }
 
-const mapStateToProps = (state) => ({
-  currencyDefault: state.mainApp.currencyDefault,
-  coinList: state.coinList.coinList,
-});
-const mapDispatchToProps = {
-  getCoinInfoList,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CoinList);
+export default CoinList;

@@ -18,14 +18,9 @@ function Navbar(props) {
           <MenuPortfolio to="/portfolio">Portfolio</MenuPortfolio>
         </StyledDiv>
         <NavbarInput />
-        <NavbarCurrency
-          handleClick={props.handleClick}
-          handleCoinCurrency={props.handleCoinCurrency}
-          currencyDefault={props.currencyDefault}
-          currencyList={props.currencyList}
-        />
+        <NavbarCurrency {...props}/>
       </StyledMenu>
-      <Global currencyDefault={props.currencyDefault} />
+      <Global {...props} />
     </>
   );
 }

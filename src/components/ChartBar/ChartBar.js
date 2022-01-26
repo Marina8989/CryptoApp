@@ -1,23 +1,28 @@
 import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ChartBarLegend from "../ChartBarLegend/ChartBarLegend.js";
 import { getChartInfo } from "store/chart/chartAction.js";
 
-function ChartBar(props) {
+function ChartBar() {
+  const dispatch = useDispatch();
+  const currencyDefault = useSelector((state) => state.mainApp.currencyDefault);
+  const chartMarket = useSelector((state) => state.chart.chartMarket);
+  const chartLabel = useSelector((state) => state.chart.chartLabel)
+
   useEffect(() => {
-    props.getChartInfo(props.currencyDefault.toLowerCase());
+    dispatch(getChartInfo(currencyDefault.toLowerCase()));
   }, []);
   return (
     <div className="chart-line">
       <ChartBarLegend />
       <Bar
         data={{
-          labels: props.chartLabel,
+          labels: chartLabel,
           datasets: [
             {
-              label: props.currencyDefault,
-              data: props.chartMarket,
+              label: currencyDefault,
+              data: chartMarket,
               fill: true,
               backgroundColor: "rgb(33,114,229)",
             },
@@ -55,13 +60,5 @@ function ChartBar(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  currencyDefault: state.mainApp.currencyDefault,
-  chartMarket: state.chart.chartMarket,
-  chartLabel: state.chart.chartLabel,
-});
-const mapDispatchToProps = {
-  getChartInfo,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChartBar);
+export default ChartBar;

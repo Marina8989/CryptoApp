@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import {
   MenuCurrency,
@@ -8,8 +8,12 @@ import {
 } from "./NavbarCurrency.styles";
 import { findItem } from "store/mainApp/mainAppAction.js";
 
-function NavbarCurrency(props) {
+function NavbarCurrency() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const dispatch = useDispatch();
+  const currencyList = useSelector((state) => state.mainApp.currencyList);
+  const currencyDefault = useSelector((state) => state.mainApp.currencyDefault);
 
   const handleClick = () => {
     setIsVisible(true);
@@ -17,17 +21,17 @@ function NavbarCurrency(props) {
 
   const handleCoinCurrency = (el) => {
     setIsVisible(false);
-    props.findItem(el);
+    dispatch(findItem(el));
   };
   return (
     <MenuCurrency>
       <MenuCurrencyH4 onClick={handleClick}>
-        {props.currencyDefault}
+        {currencyDefault}
         <MdArrowDropDown className="menu-icon-arrow" />
       </MenuCurrencyH4>
       {isVisible && (
         <>
-          {props.currencyList.map((item, index) => (
+          {currencyList.map((item, index) => (
             <StyledButton onClick={() => handleCoinCurrency(item)} key={index}>
               {item.toUpperCase()}
             </StyledButton>
@@ -37,13 +41,5 @@ function NavbarCurrency(props) {
     </MenuCurrency>
   );
 }
-const mapStateToProps = (state) => ({
-  currencyList: state.mainApp.currencyList,
-  currencyDefault: state.mainApp.currencyDefault,
-});
 
-const mapDispatchToProps = {
-  findItem,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarCurrency);
+export default NavbarCurrency;

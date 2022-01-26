@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import { throttle } from "lodash";
-import { Link } from "react-router-dom";
 import {
-  StyledInput,
-  StyledForm,
-  StyledDiv,
+  Input,
+  Form,
+  Div,
+  DivList,
   StyledH5,
+  StyledLink
 } from "./NavbbarInput.styles";
 import {
   getCoinName,
@@ -36,32 +37,32 @@ function NavbarInput(props) {
   }, [searchTerm]);
 
   return (
-    <StyledDiv>
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledInput
+    <Div>
+      <Form onSubmit={handleSubmit}>
+        <Input
           type="text"
           placeholder="Search..."
           value={searchTerm}
           onChange={handleChange}
         />
-      </StyledForm>
+      </Form>
 
-      <StyledDiv>
+      <>
         {props.isListVisible && (
-          <>
+          <DivList>
             {props.list.map((item) => (
-              <Link
+              <StyledLink
                 to={`/coinPage/${item.id}`}
                 list={props.list}
                 onClick={handleLinkChange}
               >
                 <StyledH5 key={item.id}>{item.name}</StyledH5>
-              </Link>
+              </StyledLink>
             ))}
-          </>
+          </DivList>
         )}
-      </StyledDiv>
-    </StyledDiv>
+      </>
+    </Div>
   );
 }
 
