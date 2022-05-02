@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import { debounce } from "lodash";
 import { AddAsset } from "components";
 import {
+  getCoinNames,
+  getCoinInfo,
+  handleCoinNames,
+} from "store/portfolio/portfolioAction.js";
+import {
   StyledDiv,
   ModalSection,
   ModalCoin,
@@ -26,12 +31,7 @@ import {
   StyledH5Wrap,
   StyledH4Wrap,
 } from "./Portfolio.styles";
-import "../../index.css";
-import {
-  getCoinNames,
-  getCoinInfo,
-  handleCoinNames,
-} from "store/portfolio/portfolioAction.js";
+
 
 function Portfolio(props) {
   const [searchValue, setSearchValue] = useState("");

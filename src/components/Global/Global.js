@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RiArrowUpSFill } from "react-icons/ri";
 import { BsDot } from "react-icons/bs";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
@@ -16,12 +16,15 @@ function modifyNumber(num1) {
 }
 
 function Global(props) {
+  const dispatch = useDispatch();
+  const globalList = useSelector((state) => state.global.globalList);
+
   useEffect(() => {
-    props.getGlobalInfo();
+    dispatch(getGlobalInfo());
   }, []);
   return (
     <GlobalContainer>
-      {props.global.map((item, index) => {
+      {globalList.map((item, index) => {
         return (
           <StyledGlobal key={index}>
             <StyledH4>Coins: {item.data.active_cryptocurrencies}</StyledH4>
@@ -57,11 +60,4 @@ function Global(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  global: state.global.globalList,
-});
-const mapDispatchToProps = {
-  getGlobalInfo,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Global);
+export default Global;

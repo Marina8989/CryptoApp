@@ -1,5 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import mainApp from "./mainApp/mainAppReducer";
 import global from "./global/globalReducer";
 import coinPage from "./coinPage/coinPageReducer";
@@ -18,7 +20,15 @@ const reducers = combineReducers({
   navSearch
 });
 
-const store = createStore(reducers, applyMiddleware(thunk));
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['portfolio']
+}
 
-export default store;
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+export const store = createStore(persistedReducer, applyMiddleware(thunk));
+export const persistor = persistStore(store);
+
 
